@@ -46,7 +46,7 @@ public final class Constants {
     public static final int BR_driveMotorPort = 3;
     public static final int BR_turningMotorPort = 7;
     public static final int BR_absoluteEncoderPort = 11;
-    public static final double BR_offset = -Math.toRadians(0);
+    public static final double BR_offset = -Math.toRadians(3.236);
 
     /* * * FRONT RIGHT * * */
     public static final int FR_driveMotorPort = 4;

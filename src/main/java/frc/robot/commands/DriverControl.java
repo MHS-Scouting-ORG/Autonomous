@@ -16,7 +16,10 @@ public class DriverControl extends CommandBase{
     private SwerveSubsystem swerveSubsystem;
     private DoubleSupplier xSupplier, ySupplier, zSupplier;
     private BooleanSupplier fieldOriented;
-    // private SlewRateLimiter xLimiter, yLimiter, zLimiter;
+
+    /////////////////////
+    //   CONSTRUCTOR   //
+    /////////////////////
 
     public DriverControl(SwerveSubsystem subs, DoubleSupplier xSupplier, DoubleSupplier ySupplier, DoubleSupplier zSupplier,
         BooleanSupplier fieldOriented) {
@@ -25,11 +28,6 @@ public class DriverControl extends CommandBase{
             this.ySupplier = ySupplier;
             this.zSupplier = zSupplier;
             this.fieldOriented = fieldOriented;
-
-
-            // this.xLimiter = new SlewRateLimiter(0.5);
-            // this.yLimiter = new SlewRateLimiter(0.5);
-            // this.zLimiter = new SlewRateLimiter(0.5);
 
             addRequirements(subs);
     }
