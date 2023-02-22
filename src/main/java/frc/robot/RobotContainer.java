@@ -3,6 +3,7 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.DriverControl;
+import frc.robot.commands.IncrementBalanceCommand;
 import frc.robot.subsystems.SwerveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -30,6 +31,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return Autos.Auto(swerve);
+    return new IncrementBalanceCommand(swerve);
   }
 }
