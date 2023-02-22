@@ -12,6 +12,8 @@ public class Balance extends CommandBase {
 
   public Balance(SwerveSubsystem newSwerve) {
     swerve = newSwerve;
+    
+    // Instantiate Timers
     timer = new Timer();
     autoTimer = new Timer(); 
 
@@ -20,6 +22,8 @@ public class Balance extends CommandBase {
 
   @Override
   public void initialize() {
+
+    // Start timers, set counter to 0
     autoTimer.start();
     swerve.resetEnc();
     counter = 0;
@@ -27,6 +31,8 @@ public class Balance extends CommandBase {
 
   @Override
   public void execute() {
+
+    // SmartDashboard Prints
     SmartDashboard.putString("Current Command", getName());
     SmartDashboard.putNumber("Balance Counter", counter);
     SmartDashboard.putNumber("Auto Timer", autoTimer.get());
@@ -63,6 +69,10 @@ public class Balance extends CommandBase {
           counter = 0;
         }
 
+        // reset timer for next check
+        timer.stop();
+        timer.reset();
+
       }
 
       break;
@@ -71,6 +81,8 @@ public class Balance extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
+    
+    // Stop and lock drive, set current command to idle
     SmartDashboard.putString("Current Command", "");
     swerve.stopModules();
     swerve.lock();
@@ -78,6 +90,8 @@ public class Balance extends CommandBase {
 
   @Override
   public boolean isFinished() {
+
+    // end command if robot is balanced or autotimer reaches 14.5 seconds
     return counter == 3 || autoTimer.get() >= 14.5;
   }
 }
