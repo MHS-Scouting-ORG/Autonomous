@@ -4,9 +4,30 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 
 public final class Constants {
+  ///////////////////
+  //   OP CONSTS   //
+  ///////////////////
+
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
+
+  /////////////////////
+  //   AUTO CONSTS   //
+  /////////////////////
+
+  public static class AutoConsts{
+    public static final double driveTranslationSpeed = 0.5;
+    public static final double driveRotationSpeed = 0.3;
+
+    public static final double balanceThreshhold = -8; //degree at which to stop balancing at 
+    public static final double initialPitch = -12; //degree at which to stop for initial drive-up in auto 
+    public static final double incrementalEncValue = 20; //encoder value traveled within each cycle 
+  }
+
+  ///////////////////////
+  //   SWERVE CONSTS   //
+  ///////////////////////
 
   public static class SwerveConsts{
     /* * * MEASUREMENTS * * */
@@ -17,7 +38,7 @@ public final class Constants {
     public static final double wheelBase = 0.635;
     public static final double voltage = 9.0;
 
-    /* Swerve Drive Kinematics */
+    /* * * Swerve Drive Kinematics * * */
     public static final SwerveDriveKinematics driveKinematics = new SwerveDriveKinematics(
       // front left
       new Translation2d(wheelBase / 2, trackWidth / 2),
@@ -59,13 +80,11 @@ public final class Constants {
     public static final double driveEncoderSpeedConversion = driveEncoderRotationConversion / 60;
 
     /* * * CONVERSIONS TO RADIANS * * */
-    public static final double turningEncoderRotationConversion = steerGearRatio * Math.PI; //267475.198; //341.88 * Math.PI;
-    public static final double turningEncoderSpeedConversion = turningEncoderRotationConversion / 60; //101604.912; //594.3893293799999;
-      // 5676 / 60 * 341.88 * Math.PI
+    public static final double turningEncoderRotationConversion = steerGearRatio * Math.PI; 
+    public static final double turningEncoderSpeedConversion = turningEncoderRotationConversion / 60; 
 
     /* * * SPEEDS * * */
     public static final double maxSpeed_mps = 3.6576;
-      // 5676.0 / 60.0 * ((14.0 / 50.0) * (25.0 / 19.0) * (15.0 / 45.0)) *
       // 0.10033 * Math.PI; // 13.5 feet per second = 4.1148 meters per second
     public static final double maxRotation = maxSpeed_mps / Math.hypot(trackWidth / 2.0, wheelBase / 2.0);
 
@@ -79,15 +98,10 @@ public final class Constants {
     public static final double kd_driving = 0.0;
   }
 
+  /* * * Landing Gear * * */
   public static final class LandingGear{
     public static final int deployingPistonFWDChannel = 0;
     public static final int deployingPistonREVChannel = 0;
     public static final int deployedWheelsPort = 0;
   }
-
-  public static final class AutoValues{
-    public static final double driveTranslationSpeed = 0.5;
-    public static final double driveRotationSpeed = 0.3;
-  }
-
 }
