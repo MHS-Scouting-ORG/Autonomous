@@ -22,24 +22,30 @@ public class SwerveSubsystem extends SubsystemBase {
 
     private AHRS navx;
 
-    //CONSTRUCTOR
+  /////////////////////
+  //   CONSTRUCTOR   //
+  /////////////////////
+
     public SwerveSubsystem() {
         frontLeft = new SwerveModule(SwerveConsts.FL_turningMotorPort, SwerveConsts.FL_driveMotorPort, 
-            SwerveConsts.FL_absoluteEncoderPort, SwerveConsts.FL_offset , false, true, true);
-        
+        SwerveConsts.FL_absoluteEncoderPort, SwerveConsts.FL_offset , false, true, true);
+    
         backLeft = new SwerveModule(SwerveConsts.BL_turningMotorPort, SwerveConsts.BL_driveMotorPort, 
-            SwerveConsts.BL_absoluteEncoderPort, SwerveConsts.BL_offset , false, true, true);
+        SwerveConsts.BL_absoluteEncoderPort, SwerveConsts.BL_offset , false, true, true);
 
         backRight = new SwerveModule(SwerveConsts.BR_turningMotorPort, SwerveConsts.BR_driveMotorPort, 
-            SwerveConsts.BR_absoluteEncoderPort, SwerveConsts.BR_offset , false, true, true);
+        SwerveConsts.BR_absoluteEncoderPort, SwerveConsts.BR_offset , false, true, true);
 
         frontRight = new SwerveModule(SwerveConsts.FR_turningMotorPort, SwerveConsts.FR_driveMotorPort, 
-            SwerveConsts.FR_absoluteEncoderPort, SwerveConsts.FR_offset , false, true, true);
+        SwerveConsts.FR_absoluteEncoderPort, SwerveConsts.FR_offset , false, true, true);
 
-        navx = new AHRS(SPI.Port.kMXP);;
+        navx = new AHRS(SPI.Port.kMXP);
     }
 
-    //RESET METHODS
+  /////////////////////
+  //  RESET METHODS  //
+  /////////////////////
+
     public void resetNavx() {
         navx.zeroYaw();
     }
@@ -51,30 +57,45 @@ public class SwerveSubsystem extends SubsystemBase {
         frontRight.resetEncoders();
     }
 
-    //GET METHODS 
+  /////////////////////
+  //   GET METHODS   //
+  /////////////////////
+
     public double getEnc() {
         return frontLeft.getDrivePosition(); 
     }
 
-    //0-360
+    //returns yaw in degrees, 0-360
     public double getYawAngle(){
         return ( /*navx.getYaw()*/ navx.getAngle() % 360 );
     }
 
-    //number line 
+    //returns yaw in degrees, number line form 
     public double getAngle(){
         return navx.getAngle(); 
     }
 
+    //MAKE NAVX OFFSET 
+    //returns roll in degrees 
     public double getRoll() {
-        return navx.getRoll(); 
+        return navx.getRoll()-3; 
     }
 
+    //returns robot's rotation (yaw) in radians 
+    public Rotation2d getRobotRotation(){
+      return new Rotation2d(Math.toRadians(navx.getYaw()));
+    }
+
+    //returns robot's rotation (yaw) in degrees
     public Rotation2d getRotation2d() {
         return Rotation2d.fromDegrees(getYawAngle());
     }
 
-    //modules 
+  /////////////////////
+  //   SET MODULES   //
+  /////////////////////
+
+    //stop modules  
     public void stopModules() {
         frontLeft.stop();
         backLeft.stop();
@@ -82,6 +103,7 @@ public class SwerveSubsystem extends SubsystemBase {
         frontRight.stop();
     }
 
+    //sets the modules to a certain desired state (used in DriverControl)
     public void setModuleStates(SwerveModuleState[] desiredStates) {
         SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, SwerveConsts.maxSpeed_mps);
         frontLeft.setDesiredState(desiredStates[0]);
@@ -90,6 +112,8 @@ public class SwerveSubsystem extends SubsystemBase {
         frontRight.setDesiredState(desiredStates[3]);
     }
 
+    //lock method for Charge Station 
+    //wheels in X-formation so they don't roll 
     public void lock(){
         SwerveModuleState fl = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(45)));
         SwerveModuleState bl = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(-45)));
@@ -102,14 +126,9 @@ public class SwerveSubsystem extends SubsystemBase {
         frontRight.setAngle(fr);
     }
 
-
-    // PERIODIC - runs repeatedly (like periodic from timed robot)
-    @Override
-    public void periodic() {
-        SmartDashboard.putNumber("Robot Yaw", getYawAngle());
-    }
-
-    // Auto
+  ///////////////////////////
+  //   AUTONOMOUS BASICS   //
+  ///////////////////////////
 
     public void driveForward(){
         SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(AutoValues.driveTranslationSpeed, 0, 0));
@@ -141,10 +160,19 @@ public class SwerveSubsystem extends SubsystemBase {
         setModuleStates(moduleStates);
     }
 
-    //method to set x, y, and z axes 
+    //set x, y, and z axes 
+    //used in the PID Balance  
     public void pidDrive(double y, double x, double z) {
         SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(y, x, z)); 
         setModuleStates(moduleStates);
     }
+
+    // PERIODIC - runs repeatedly (like periodic from timed robot)
+    @Override
+    public void periodic() {
+    SmartDashboard.putNumber("Robot Yaw", getYawAngle());
+    SmartDashboard.putNumber("Robot Pitch", getRoll());
+    }
+    
 
 }

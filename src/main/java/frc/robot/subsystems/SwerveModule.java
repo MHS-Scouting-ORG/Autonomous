@@ -29,6 +29,10 @@ public class SwerveModule extends SubsystemBase{
     private double encoderOffset;
     private boolean encoderReversed;
 
+     /////////////////////
+     //   CONSTRUCTOR   //
+     /////////////////////
+
     public SwerveModule(int turnPort, int drivePort, int cancoderPort, double encoderOffset, boolean encoderReversed, boolean driveReversed, boolean turnReversed){
         turningMotor = new CANSparkMax(turnPort, MotorType.kBrushless);
         drivingMotor = new CANSparkMax(drivePort, MotorType.kBrushless);
@@ -60,6 +64,10 @@ public class SwerveModule extends SubsystemBase{
 
     }
 
+     /////////////////////
+     //   GET METHODS   //
+     /////////////////////
+
     /* * * ENCODER VALUES * * */
 
     public double getDrivePosition(){
@@ -67,20 +75,9 @@ public class SwerveModule extends SubsystemBase{
         return drivingEnc.getPosition();
     }
 
-    // neo encoder in degrees 
     public double getTurningPosition(){
         //return (turningEnc.getPosition() % 900) / 900 * 360;
-        return turningEnc.getPosition();
-    }
-
-    public double getDriveSpeed(){
-        //return drivingEnc.getVelocity() / 60 * SwerveConsts.wheelDiameter * Math.PI;
-        return drivingEnc.getVelocity();
-    }
-
-    public double getTurningSpeed(){
-        //return turningEnc.getVelocity() / 60 * 2 * Math.PI;
-        return turningEnc.getVelocity();
+        return turningEnc.getPosition() + encoderOffset;
     }
 
     //absolute encoder in radians 
@@ -94,12 +91,17 @@ public class SwerveModule extends SubsystemBase{
         }
     }
 
-    // set turning enc to value of absolute encoder
-    public void resetEncoders(){
-        drivingEnc.setPosition(0);
-        turningEnc.setPosition(getAbsoluteEncoder());
+    /* * * SPEED VALUES * * */
+
+    public double getDriveSpeed(){
+        return drivingEnc.getVelocity();
     }
 
+    public double getTurningSpeed(){
+        return turningEnc.getVelocity();
+    }
+
+    //get the state of the module
     public SwerveModuleState getState(){
         // Rotation2d = rotation represented by a point on the unit circle
         // Rotation2d(double) => constructs a Rotation2d given the angle in radians
@@ -109,6 +111,17 @@ public class SwerveModule extends SubsystemBase{
         return new SwerveModuleState(getDriveSpeed(), new Rotation2d(getAbsoluteEncoder()));
     }
 
+    /////////////////////
+    //   SET METHODS   //
+    /////////////////////
+
+    // set turning enc to value of absolute encoder
+    public void resetEncoders(){
+        drivingEnc.setPosition(0);
+        turningEnc.setPosition(getAbsoluteEncoder());
+    }
+
+    //sets the desired state of the module (for left joystick)
     public void setDesiredState(SwerveModuleState state){
         // To make keep robot from going back to 0 position
         if(Math.abs(state.speedMetersPerSecond) < 0.1){
@@ -120,16 +133,15 @@ public class SwerveModule extends SubsystemBase{
 
         // set speed
         drivingMotor.set(state.speedMetersPerSecond / SwerveConsts.maxSpeed_mps * SwerveConsts.voltage); 
-        // drivingMotor.set(drivingPID.calculate((drivingMotor.get() * SwerveConsts.maxSpeed_mps), state.speedMetersPerSecond) * SwerveConsts.voltage);
         turningMotor.set(turningPID.calculate(getAbsoluteEncoder(), state.angle.getRadians()));
 
         // Print to SmartDashboard
-        //SmartDashboard.putNumber("Swerve["+absoluteEncoder.getDeviceID()+"] desired enc", state.angle.getRadians()); //desired enc 
         SmartDashboard.putString("Swerve["+absoluteEncoder.getDeviceID()+"] state", state.toString());
         SmartDashboard.putNumber("Swerve["+absoluteEncoder.getDeviceID()+"] drive speed", getDriveSpeed());
         SmartDashboard.putNumber("Swerve["+absoluteEncoder.getDeviceID()+"] angle", getAbsoluteEncoder());
     }
 
+    //sets the desired angle of the module (for right joystick)
     public void setAngle(SwerveModuleState state){
 
         state = SwerveModuleState.optimize(state, getState().angle);
@@ -143,6 +155,7 @@ public class SwerveModule extends SubsystemBase{
         SmartDashboard.putString("Swerve["+absoluteEncoder.getDeviceID()+"] state", state.toString());  
     }
 
+    //stop modules 
     public void stop(){
         drivingMotor.set(0);
         turningMotor.set(0);
