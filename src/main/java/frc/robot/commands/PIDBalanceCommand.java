@@ -5,6 +5,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.SwerveSubsystem;
 
 public class PIDBalanceCommand extends CommandBase {
+
+  // This command utilizes PID to balance onto charge station, look to Balance.java for the incrementation command
+
+
   private final SwerveSubsystem swerve; 
   //redo values on swerve. These are for Sparky
   private final PIDController pidController = new PIDController(0.3, 00017, 0.028); 

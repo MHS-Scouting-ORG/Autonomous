@@ -9,14 +9,20 @@ import frc.robot.commands.MovementCommands.DriveForwardCommand;
 import frc.robot.commands.MovementCommands.DriveBackwardCommand;
 
 public class IncrementBalanceCommand extends CommandBase {
-  private final SwerveSubsystem swerve; 
-  private Timer timer; 
-  private Timer autoTimer; 
+
+  // Unused command, use Balance.java for used incrementation command
+
+
+  private final SwerveSubsystem swerve;
+  private final Timer timer; 
+  private final Timer autoTimer; 
   private double prevPitch; 
   private double currentPitch; 
 
   public IncrementBalanceCommand(SwerveSubsystem newSwerve) {
     swerve = newSwerve; 
+
+    // Instantiate timers
     timer = new Timer(); 
     autoTimer = new Timer(); 
 
@@ -25,7 +31,8 @@ public class IncrementBalanceCommand extends CommandBase {
 
   @Override
   public void initialize() {
-  timer.reset();
+  
+  // Start timers, set the previous pitch to 0
   timer.start();
   autoTimer.start();
 
@@ -34,20 +41,26 @@ public class IncrementBalanceCommand extends CommandBase {
 
   @Override
   public void execute() {
+
+    // Print timers to SmartDashboard
     SmartDashboard.putNumber("Timer", timer.get());
     SmartDashboard.putString("Current Command", getName());
 
+    // Wait 1 second, then drive backwards
     if (timer.get() >= 1) {
       swerve.driveBackward(); 
       timer.reset();
     } 
-
+    
+    // Set prevpitch to the previous pitch, then get the new current pitch
     prevPitch = currentPitch; 
     currentPitch = swerve.getRoll();
   }
 
   @Override
   public void end(boolean interrupted) {
+
+    // Stop and lock drive
     swerve.lock(); 
     SmartDashboard.putString("Current Command", "");
   }
