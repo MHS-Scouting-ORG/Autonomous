@@ -39,7 +39,7 @@ public class IncrementBalanceCommand extends CommandBase {
 
   @Override
   public void execute() {
-
+/* 
     if (robotRight()) {
       lSpeed = AutoConsts.driTranslationSlowSpeed; 
       rSpeed = AutoConsts.driveTranslationSpeed; 
@@ -49,21 +49,23 @@ public class IncrementBalanceCommand extends CommandBase {
     } else {
       lSpeed = AutoConsts.driveTranslationSpeed; 
       rSpeed = AutoConsts.driveTranslationSpeed; 
-    }
+    } */
+    //swerve.setTank(lSpeed, rSpeed);
 
     switch (counter) {
       case 0: //drive until -12 deg (initial startup)
         if (swerve.getRoll() <= AutoConsts.initialPitch) {
           swerve.stopModules();
+          swerve.resetEnc();
           counter++; 
         } else {
-          swerve.setTank(lSpeed, rSpeed);
+          swerve.driveBackward();
         }
       break; 
 
       case 1: // drive a little
       swerve.resetEnc();
-        if (swerve.getEnc() < -AutoConsts.incrementalEncValue) {
+        if (swerve.getEnc() < AutoConsts.incrementalEncValue) {
           swerve.stopModules();
           counter++;
         } else {
