@@ -37,7 +37,7 @@ public class IncrementBalanceCommand extends CommandBase {
           swerve.driveBackward();
         }
       break; 
-/* 
+
       case 1: // drive a little
       swerve.resetEnc();
         if (swerve.getEnc() < -AutoConsts.incrementalEncValue) {
@@ -66,7 +66,7 @@ public class IncrementBalanceCommand extends CommandBase {
       }
 
       break;
-      */
+      
     }
 
     /* * * Smart Dashboard * * */
