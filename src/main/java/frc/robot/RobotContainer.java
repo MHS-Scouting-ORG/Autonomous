@@ -2,8 +2,8 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
-import frc.robot.commands.Balance;
 import frc.robot.commands.DriverControl;
+import frc.robot.commands.IncrementBalanceCommand;
 import frc.robot.commands.MovementCommands.DriveBackwardCommand;
 import frc.robot.subsystems.SwerveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -33,6 +33,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return new Balance(swerve); 
+    return new IncrementBalanceCommand(swerve); 
   }
 }

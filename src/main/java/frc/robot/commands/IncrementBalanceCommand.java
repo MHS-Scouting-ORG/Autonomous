@@ -86,7 +86,7 @@ public class IncrementBalanceCommand extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    //FIXME change pls; actually ends at 3 
+    //Counter ends at 3 
     //start off slower; align wheels at init
     return counter == 3 || autoTimer.get() >= 14.5;
   }

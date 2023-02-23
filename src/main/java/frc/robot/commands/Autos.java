@@ -11,7 +11,7 @@ import frc.robot.subsystems.SwerveSubsystem;
 public final class Autos extends CommandBase{
   /** Example static factory for an autonomous command. */
   public static CommandBase Auto(SwerveSubsystem swerve) {
-    return new Balance(swerve);
+    return new IncrementBalanceCommand(swerve);
   
 
 }
