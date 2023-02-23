@@ -1,15 +1,12 @@
 package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.AutoConsts;
@@ -32,16 +29,16 @@ public class SwerveSubsystem extends SubsystemBase {
 
     public SwerveSubsystem() {
         frontLeft = new SwerveModule(SwerveConsts.FL_turningMotorPort, SwerveConsts.FL_driveMotorPort, 
-        SwerveConsts.FL_absoluteEncoderPort, SwerveConsts.FL_offset , false, true, true);
-    
+            SwerveConsts.FL_absoluteEncoderPort, SwerveConsts.FL_offset , false, true, true);
+        
         backLeft = new SwerveModule(SwerveConsts.BL_turningMotorPort, SwerveConsts.BL_driveMotorPort, 
-        SwerveConsts.BL_absoluteEncoderPort, SwerveConsts.BL_offset , false, true, true);
+            SwerveConsts.BL_absoluteEncoderPort, SwerveConsts.BL_offset , false, true, true);
 
         backRight = new SwerveModule(SwerveConsts.BR_turningMotorPort, SwerveConsts.BR_driveMotorPort, 
-        SwerveConsts.BR_absoluteEncoderPort, SwerveConsts.BR_offset , false, true, true);
+            SwerveConsts.BR_absoluteEncoderPort, SwerveConsts.BR_offset , false, true, true);
 
         frontRight = new SwerveModule(SwerveConsts.FR_turningMotorPort, SwerveConsts.FR_driveMotorPort, 
-        SwerveConsts.FR_absoluteEncoderPort, SwerveConsts.FR_offset , false, true, true);
+            SwerveConsts.FR_absoluteEncoderPort, SwerveConsts.FR_offset , false, true, true);
 
         navx = new AHRS(SPI.Port.kMXP);
 
@@ -125,18 +122,6 @@ public class SwerveSubsystem extends SubsystemBase {
         SwerveModuleState bl = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(-45)));
         SwerveModuleState br = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(45)));
         SwerveModuleState fr = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(-45)));
-
-        frontLeft.setAngle(fl);
-        backLeft.setAngle(bl);
-        backRight.setAngle(br);
-        frontRight.setAngle(fr);
-    }
-
-    public void keaniIsSortaCool(){
-        SwerveModuleState fl = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(0)));
-        SwerveModuleState bl = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(0)));
-        SwerveModuleState br = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(0)));
-        SwerveModuleState fr = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(0)));
 
         frontLeft.setAngle(fl);
         backLeft.setAngle(bl);
