@@ -11,23 +11,12 @@ public class IncrementBalanceCommand extends CommandBase {
   private final Timer timer, autoTimer; 
   private int counter;
 
-  private double lSpeed; 
-  private double rSpeed; 
-
   public IncrementBalanceCommand(SwerveSubsystem newSwerve) {
     swerve = newSwerve;
     timer = new Timer();
     autoTimer = new Timer(); 
 
     addRequirements(swerve);
-  }
-
-  private boolean robotRight() {
-    return swerve.getYawAngle() > 0 && swerve.getYawAngle() < 90; 
-  }
-
-  private boolean robotLeft() {
-    return swerve.getYawAngle() < 360 && swerve.getYawAngle() > 270; 
   }
 
   @Override
@@ -39,25 +28,16 @@ public class IncrementBalanceCommand extends CommandBase {
 
   @Override
   public void execute() {
-
-    if (robotRight()) {
-      lSpeed = AutoConsts.driTranslationSlowSpeed; 
-      rSpeed = AutoConsts.driveTranslationSpeed; 
-    } else if (robotLeft()) {
-      lSpeed = AutoConsts.driveTranslationSpeed; 
-      rSpeed = AutoConsts.driTranslationSlowSpeed; 
-    } else {
-      lSpeed = AutoConsts.driveTranslationSpeed; 
-      rSpeed = AutoConsts.driveTranslationSpeed; 
-    }
-
     switch (counter) {
+
+
+
       case 0: //drive until -12 deg (initial startup)
         if (swerve.getRoll() <= AutoConsts.initialPitch) {
           swerve.stopModules();
           counter++; 
         } else {
-          swerve.setTank(lSpeed, rSpeed);
+          swerve.driveBackward();
         }
       break; 
 
