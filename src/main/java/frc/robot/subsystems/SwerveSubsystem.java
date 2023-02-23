@@ -1,12 +1,15 @@
 package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.AutoConsts;
@@ -127,6 +130,18 @@ public class SwerveSubsystem extends SubsystemBase {
         frontRight.setAngle(fr);
     }
 
+    public void keaniIsSortaCool(){
+        SwerveModuleState fl = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(0)));
+        SwerveModuleState bl = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(0)));
+        SwerveModuleState br = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(0)));
+        SwerveModuleState fr = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(0)));
+
+        frontLeft.setAngle(fl);
+        backLeft.setAngle(bl);
+        backRight.setAngle(br);
+        frontRight.setAngle(fr);
+    }
+
   ///////////////////////////
   //   AUTONOMOUS BASICS   //
   ///////////////////////////
@@ -159,6 +174,16 @@ public class SwerveSubsystem extends SubsystemBase {
     public void rotateRight(){
         SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, 0, AutoConsts.driveRotationSpeed));
         setModuleStates(moduleStates);
+    }
+
+    public void tank(double leftSpeed, double rightSpeed){
+        CANSparkMax frontLeft = new CANSparkMax(this.frontLeft.getDriveMotor(), MotorType.kBrushless);
+        CANSparkMax frontRight = new CANSparkMax(this.frontRight.getDriveMotor(), MotorType.kBrushless);
+        CANSparkMax backLeft = new CANSparkMax(this.backLeft.getDriveMotor(), MotorType.kBrushless);
+        CANSparkMax backRight = new CANSparkMax(this.backRight.getDriveMotor(), MotorType.kBrushless);
+
+        MotorControllerGroup leftSide = new MotorControllerGroup(frontLeft, backLeft);
+        MotorControllerGroup rightSide = new MotorControllerGroup(frontRight, backRight);
     }
 
     //set x, y, and z axes 

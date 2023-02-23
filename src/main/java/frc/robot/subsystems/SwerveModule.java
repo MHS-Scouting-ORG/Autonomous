@@ -155,10 +155,24 @@ public class SwerveModule extends SubsystemBase{
         SmartDashboard.putString("Swerve["+absoluteEncoder.getDeviceID()+"] state", state.toString());  
     }
 
+    public void keaniIsReallyCool(SwerveModuleState state){
+        
+        state = SwerveModuleState.optimize(state, getState().angle);
+
+        drivingMotor.set(0);
+        turningMotor.set(turningPID.calculate(0, state.angle.getRadians()));
+
+        SmartDashboard.putString("IsKeaniCool?", "True!");
+    }
+
     //stop modules 
     public void stop(){
         drivingMotor.set(0);
         turningMotor.set(0);
+    }
+
+    public int getDriveMotor(){
+        return drivingMotor.getDeviceId();
     }
 
     @Override
