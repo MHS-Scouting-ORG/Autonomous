@@ -161,6 +161,11 @@ public class SwerveModule extends SubsystemBase{
         turningMotor.set(0);
     }
 
+    //set driving motor 
+    public void setDrivingMotor(double speed){
+        drivingMotor.set(speed);
+    }
+
     @Override
     public void periodic(){
         // kp = SmartDashboard.getNumber("kP", 0);
