@@ -18,11 +18,13 @@ public final class Constants {
 
   public static class AutoConsts{
     public static final double driveTranslationSpeed = 0.1;
+    public static final double driTranslationSlowSpeed = 0.07; 
     public static final double driveRotationSpeed = 0.3;
 
     public static final double balanceThreshhold = -8; //degree at which to stop balancing at 
     public static final double initialPitch = -12; //degree at which to stop for initial drive-up in auto 
     public static final double incrementalEncValue = 2; //encoder value traveled within each cycle 
+
   }
 
   ///////////////////////

@@ -171,8 +171,9 @@ public class SwerveModule extends SubsystemBase{
         turningMotor.set(0);
     }
 
-    public int getDriveMotor(){
-        return drivingMotor.getDeviceId();
+    //set driving motor 
+    public void setDrivingMotor(double speed){
+        drivingMotor.set(speed);
     }
 
     @Override

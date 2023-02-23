@@ -44,6 +44,8 @@ public class SwerveSubsystem extends SubsystemBase {
         SwerveConsts.FR_absoluteEncoderPort, SwerveConsts.FR_offset , false, true, true);
 
         navx = new AHRS(SPI.Port.kMXP);
+
+        navx.zeroYaw();
     }
 
   /////////////////////
@@ -191,6 +193,13 @@ public class SwerveSubsystem extends SubsystemBase {
     public void pidDrive(double y, double x, double z) {
         SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(y, x, z)); 
         setModuleStates(moduleStates);
+    }
+    
+    public void setTank(double lSpeed, double rSpeed){
+        frontLeft.setDrivingMotor(lSpeed);
+        backLeft.setDrivingMotor(lSpeed);
+        backRight.setDrivingMotor(rSpeed);
+        frontRight.setDrivingMotor(rSpeed);
     }
 
     // PERIODIC - runs repeatedly (like periodic from timed robot)
