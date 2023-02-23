@@ -74,6 +74,7 @@ public class IncrementBalanceCommand extends CommandBase {
     SmartDashboard.putNumber("Balance Counter", counter);
     SmartDashboard.putNumber("Auto Timer", autoTimer.get());
     SmartDashboard.putNumber("Timer", timer.get());
+    SmartDashboard.putNumber("Encoder", swerve.getEnc()); 
   }
 
   @Override
@@ -86,6 +87,7 @@ public class IncrementBalanceCommand extends CommandBase {
   @Override
   public boolean isFinished() {
     //FIXME change pls; actually ends at 3 
-    return counter == 1 || autoTimer.get() >= 14.5;
+    //start off slower; align wheels at init
+    return counter == 3 || autoTimer.get() >= 14.5;
   }
 }
