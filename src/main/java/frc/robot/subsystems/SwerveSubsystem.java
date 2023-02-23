@@ -178,16 +178,6 @@ public class SwerveSubsystem extends SubsystemBase {
         setModuleStates(moduleStates);
     }
 
-    public void tank(double leftSpeed, double rightSpeed){
-        CANSparkMax frontLeft = new CANSparkMax(this.frontLeft.getDriveMotor(), MotorType.kBrushless);
-        CANSparkMax frontRight = new CANSparkMax(this.frontRight.getDriveMotor(), MotorType.kBrushless);
-        CANSparkMax backLeft = new CANSparkMax(this.backLeft.getDriveMotor(), MotorType.kBrushless);
-        CANSparkMax backRight = new CANSparkMax(this.backRight.getDriveMotor(), MotorType.kBrushless);
-
-        MotorControllerGroup leftSide = new MotorControllerGroup(frontLeft, backLeft);
-        MotorControllerGroup rightSide = new MotorControllerGroup(frontRight, backRight);
-    }
-
     //set x, y, and z axes 
     //used in the PID Balance  
     public void pidDrive(double y, double x, double z) {
