@@ -53,6 +53,8 @@ public class SwerveModule extends SubsystemBase{
         
         turningEnc.setPositionConversionFactor(SwerveConsts.turningEncoderRotationConversion);
         turningEnc.setVelocityConversionFactor(SwerveConsts.turningEncoderSpeedConversion);
+        drivingEnc.setPositionConversionFactor(SwerveConsts.driveEncoderRotationConversion);
+        drivingEnc.setVelocityConversionFactor(SwerveConsts.driveEncoderSpeedConversion);
 
         drivingMotor.setInverted(driveReversed);
         turningMotor.setInverted(turnReversed);
