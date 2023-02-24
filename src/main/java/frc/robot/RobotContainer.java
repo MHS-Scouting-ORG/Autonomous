@@ -1,7 +1,6 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autos;
 import frc.robot.commands.DriverControl;
 import frc.robot.commands.IncrementBalanceCommand;
 import frc.robot.subsystems.SwerveSubsystem;
