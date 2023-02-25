@@ -1,40 +1,40 @@
 package frc.robot.commands.MovementCommands;
 
-import javax.swing.text.StyleContext.SmallAttributeSet;
-
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.SwerveSubsystem;
 
 public class StrafeLeftCommand extends CommandBase {
   private final SwerveSubsystem swerve; 
-  private double desiredEnc; 
+  private Timer timer; 
 
-  public StrafeLeftCommand(SwerveSubsystem newSwerve, double newDesiredEnc) {
+  public StrafeLeftCommand(SwerveSubsystem newSwerve) {
     swerve = newSwerve; 
-    desiredEnc = newDesiredEnc; 
+    timer = new Timer(); 
 
     addRequirements(swerve);
   }
 
   @Override
   public void initialize() {
-    swerve.resetEnc();
+    timer.reset();
+    timer.start();
   }
 
   @Override
   public void execute() {
-    SmartDashboard.putString("Current Command", getName()); 
-    swerve.strafeLeft();
+    SmartDashboard.putString("Current Command", getName());
+    SmartDashboard.putNumber("Timer", timer.get()); 
   }
 
   @Override
   public void end(boolean interrupted) {
-    swerve.stopModules();
+    timer.stop();
   }
 
   @Override
   public boolean isFinished() {
-    return swerve.getEnc() > desiredEnc;
+    return timer.get() >= 3; 
   }
 }
