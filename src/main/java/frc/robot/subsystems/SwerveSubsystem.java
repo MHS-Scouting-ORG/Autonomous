@@ -18,6 +18,7 @@ public class SwerveSubsystem extends SubsystemBase {
     private SwerveModule backLeft;
     private SwerveModule backRight;
     private SwerveModule frontRight;
+    public double autoYaw; 
 
     private SwerveModuleState states;
 
@@ -133,34 +134,60 @@ public class SwerveSubsystem extends SubsystemBase {
   //   AUTONOMOUS BASICS   //
   ///////////////////////////
 
-    public void driveForward(){
-        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(AutoConsts.driveTranslationSpeed, 0, 0));
-        setModuleStates(moduleStates);
+    public void driveForward(double desiredEnc){
+        if (getEnc() >= desiredEnc) {
+            stopModules();
+        } else {
+            SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(AutoConsts.driveTranslationSpeed, 0, 0));
+            setModuleStates(moduleStates);
+        }
     }
 
-    public void driveBackward(){
-        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(-AutoConsts.driveTranslationSpeed, 0, 0));
-        setModuleStates(moduleStates);
+    public void driveBackward(double desiredEnc){
+        if (getEnc() <= -desiredEnc) {
+            stopModules();
+        } else {
+            SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(-AutoConsts.driveTranslationSpeed, 0, 0));
+            setModuleStates(moduleStates);
+        }
     }
 
-    public void strafeLeft(){
-        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, -AutoConsts.driveTranslationSpeed, 0));
-        setModuleStates(moduleStates);
+    public void strafeLeft(double desiredEnc){
+        if (getEnc() >= desiredEnc) {
+            stopModules();
+        } else {
+            SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, -AutoConsts.driveTranslationSpeed, 0));
+            setModuleStates(moduleStates);    
+        }
     }
 
-    public void strafeRight(){
-        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, AutoConsts.driveTranslationSpeed, 0));
-        setModuleStates(moduleStates);
+    public void strafeRight(double desiredEnc){
+        if (getEnc() <= -desiredEnc) {
+            stopModules();
+        } else {
+            SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, AutoConsts.driveTranslationSpeed, 0));
+            setModuleStates(moduleStates);
+        }
     }
 
-    public void rotateLeft(){
-        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, 0, -AutoConsts.driveRotationSpeed));
-        setModuleStates(moduleStates);
+    //init autoYaw when you make the FunctionalCommand
+    //"() -> swerve.autoYaw = swerve.getAngle()," in init 
+    public void rotateLeft(double desiredAngle){ 
+        if (getAngle() <= autoYaw - desiredAngle) {
+            stopModules();
+        } else {
+            SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, 0, -AutoConsts.driveRotationSpeed));
+            setModuleStates(moduleStates);
+        }
     }
 
-    public void rotateRight(){
-        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, 0, AutoConsts.driveRotationSpeed));
-        setModuleStates(moduleStates);
+    public void rotateRight(double desiredAngle){
+        if (getAngle() >= autoYaw + desiredAngle) {
+            stopModules();
+        } else {
+            SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, 0, AutoConsts.driveRotationSpeed));
+            setModuleStates(moduleStates); 
+        }
     }
 
     //set x, y, and z axes 
