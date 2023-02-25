@@ -9,6 +9,7 @@ public class Hybrid extends SequentialCommandGroup {
   /** Creates a new SideHybrid. */
   public Hybrid() {
     addCommands(
+    //claw in 
     // start lined up with community edge 
     // bring elev up and pivot out 
     // parallel command: bring arm back down and drive forward 

@@ -8,6 +8,7 @@ public class MidHigh extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
+      //claw in 
       // elev up 
       //pivot out 
       //release claw 

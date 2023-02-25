@@ -11,6 +11,7 @@ public class midHighBal extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
+      //claw in 
       //move backward 
       //arm into high position 
       //move forward til bumpers hit the edge of grid 
