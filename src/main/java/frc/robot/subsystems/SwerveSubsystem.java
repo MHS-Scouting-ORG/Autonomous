@@ -134,34 +134,65 @@ public class SwerveSubsystem extends SubsystemBase {
   //   AUTONOMOUS BASICS   //
   ///////////////////////////
 
-    public void driveForward(double desiredEnc){
+      /* * * SET * * */
+
+    public void driveForward() {
+        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(AutoConsts.driveTranslationSpeed, 0, 0));
+        setModuleStates(moduleStates);
+    }
+
+    public void driveBackward() {
+        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(-AutoConsts.driveTranslationSpeed, 0, 0));
+        setModuleStates(moduleStates);
+    }
+
+    public void strafeLeft() {
+        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, -AutoConsts.driveTranslationSpeed, 0));
+        setModuleStates(moduleStates);
+    }
+
+    public void strafeRight() {
+        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, AutoConsts.driveTranslationSpeed, 0));
+        setModuleStates(moduleStates);
+    }
+
+    public void rotateLeft() {
+        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, 0, -AutoConsts.driveRotationSpeed));
+        setModuleStates(moduleStates);
+    }
+
+    public void rotateRight() {
+        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, 0, AutoConsts.driveRotationSpeed));
+        setModuleStates(moduleStates); 
+    }
+
+    /* * * LIMIT * * */
+
+    public void driveForwardLim(double desiredEnc){
         if (getEnc() >= desiredEnc) {
             stopModules();
         } else {
-            SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(AutoConsts.driveTranslationSpeed, 0, 0));
-            setModuleStates(moduleStates);
+            driveForward();
         }
     }
 
-    public void driveBackward(double desiredEnc){
+    public void driveBackwardLim(double desiredEnc){
         if (getEnc() <= -desiredEnc) {
             stopModules();
         } else {
-            SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(-AutoConsts.driveTranslationSpeed, 0, 0));
-            setModuleStates(moduleStates);
+            driveBackward();
         }
     }
 
-    public void strafeLeft(double desiredEnc){
+    public void strafeLeftLim(double desiredEnc){
         if (getEnc() >= desiredEnc) {
             stopModules();
         } else {
-            SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, -AutoConsts.driveTranslationSpeed, 0));
-            setModuleStates(moduleStates);    
+            strafeLeft();    
         }
     }
 
-    public void strafeRight(double desiredEnc){
+    public void strafeRightLim(double desiredEnc){
         if (getEnc() <= -desiredEnc) {
             stopModules();
         } else {
@@ -172,21 +203,19 @@ public class SwerveSubsystem extends SubsystemBase {
 
     //init autoYaw when you make the FunctionalCommand
     //"() -> swerve.autoYaw = swerve.getAngle()," in init 
-    public void rotateLeft(double desiredAngle){ 
+    public void rotateLeftLim(double desiredAngle){ 
         if (getAngle() <= autoYaw - desiredAngle) {
             stopModules();
         } else {
-            SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, 0, -AutoConsts.driveRotationSpeed));
-            setModuleStates(moduleStates);
+            rotateLeft();
         }
     }
 
-    public void rotateRight(double desiredAngle){
+    public void rotateRightLim(double desiredAngle){
         if (getAngle() >= autoYaw + desiredAngle) {
             stopModules();
         } else {
-            SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, 0, AutoConsts.driveRotationSpeed));
-            setModuleStates(moduleStates); 
+            rotateRight();
         }
     }
 
