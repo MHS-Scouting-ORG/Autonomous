@@ -15,6 +15,7 @@ public class IncrementBalanceCommand extends CommandBase {
   private double rSpeed; 
 
   public IncrementBalanceCommand(SwerveSubsystem newSwerve) {
+    //PASS IN AUTO TIMER FROM SEQUENTIAL COMMAND CLASS AND USE IT TO CHECK HERE 
     swerve = newSwerve;
     timer = new Timer();
     autoTimer = new Timer(); 

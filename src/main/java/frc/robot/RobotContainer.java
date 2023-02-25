@@ -4,6 +4,8 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.DriverControl;
 import frc.robot.commands.IncrementBalanceCommand;
 import frc.robot.commands.Lock;
+import frc.robot.commands.seqTestAuto;
+// import frc.robot.commands.testauto;
 import frc.robot.commands.MovementCommands.DriveBackwardCommand;
 import frc.robot.commands.MovementCommands.DriveForwardCommand;
 import frc.robot.commands.MovementCommands.RotateLeftCommand;
@@ -31,8 +33,7 @@ public class RobotContainer {
   private final SwerveSubsystem swerve = new SwerveSubsystem();
   private final XboxController m_Controller = new XboxController(0); 
 
-  private Timer autoTimer = new Timer(); 
-  private BooleanSupplier autoDone = () -> autoTimer.get() > 5; 
+ // private Timer autoTimer = new Timer(); 
 
   public RobotContainer() {
     /* * * Driver Control Default * * */
@@ -50,6 +51,11 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
+    return new seqTestAuto(swerve); 
+
+  /*   if (autoTimer.get() > 5) {
+      return new Lock(swerve); 
+    } else {
     return new SequentialCommandGroup(
 
       new DriveForwardCommand(swerve), 
@@ -59,6 +65,7 @@ public class RobotContainer {
       new RotateLeftCommand(swerve), 
 
       new StrafeRightCommand(swerve)
-    ).deadlineWith(new Lock(swerve));
-  }
+    );
+  } */
+} 
 }
