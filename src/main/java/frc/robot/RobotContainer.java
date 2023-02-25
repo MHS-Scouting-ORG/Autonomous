@@ -1,18 +1,23 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autos;
 import frc.robot.commands.DriverControl;
 import frc.robot.commands.IncrementBalanceCommand;
+import frc.robot.commands.AutonomousCommands.MidHighBalance;
 import frc.robot.commands.MovementCommands.DriveBackwardCommand;
 import frc.robot.subsystems.SwerveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.DriverControl;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.MovementCommands.DriveForwardCommand;
+import frc.robot.commands.MovementCommands.DriveBackwardCommand;
+import frc.robot.commands.MovementCommands.StrafeLeftCommand;
+import frc.robot.commands.MovementCommands.RotateRightCommand;
 
 public class RobotContainer {
 
@@ -36,6 +41,15 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return null; 
+    return new RunCommand( 
+      () -> new DriveBackwardCommand(swerve, 10).andThen(
+
+      () -> new DriveForwardCommand(swerve, 10)).andThen(
+      
+      () -> new RotateRightCommand(swerve, 30)).andThen(
+          
+      () -> new StrafeLeftCommand(swerve, 10)) 
+      
+  , swerve);
   }
 }

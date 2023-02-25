@@ -1,5 +1,6 @@
 package frc.robot.commands.AutonomousCommands;
 
+import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.SwerveSubsystem;
 
@@ -14,7 +15,6 @@ public class SideHybrid extends SequentialCommandGroup {
     swerve = newSwerve;
 
     addCommands(
-
 
     );
 

@@ -39,7 +39,7 @@ public class IncrementBalanceCommand extends CommandBase {
 
   @Override
   public void execute() {
-/* 
+    /* 
     if (robotRight()) {
       lSpeed = AutoConsts.driTranslationSlowSpeed; 
       rSpeed = AutoConsts.driveTranslationSpeed; 
@@ -49,7 +49,8 @@ public class IncrementBalanceCommand extends CommandBase {
     } else {
       lSpeed = AutoConsts.driveTranslationSpeed; 
       rSpeed = AutoConsts.driveTranslationSpeed; 
-    } */
+    } 
+    */
     //swerve.setTank(lSpeed, rSpeed);
 
     switch (counter) {
