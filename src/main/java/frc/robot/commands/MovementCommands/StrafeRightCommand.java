@@ -1,6 +1,7 @@
 
 package frc.robot.commands.MovementCommands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.SwerveSubsystem;
 
@@ -22,6 +23,7 @@ public class StrafeRightCommand extends CommandBase {
 
   @Override
   public void execute() {
+    SmartDashboard.putString("Current Command", getName());
     swerve.strafeRight();
   }
 
