@@ -1,6 +1,7 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.DriveTest;
 import frc.robot.commands.DriverControl;
 import frc.robot.commands.IncrementBalanceCommand;
 import frc.robot.commands.MovementCommands.DriveBackwardCommand;
@@ -39,15 +40,17 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return new SequentialCommandGroup(
+    return new DriveTest(swerve);
+    
+    //   new SequentialCommandGroup(
       
-      new DriveForwardCommand(swerve, 10), 
+    //   new DriveForwardCommand(swerve, 10), 
 
-      new DriveBackwardCommand(swerve, 10) /*, 
+    //   new DriveBackwardCommand(swerve, 10) /*, 
 
-      new RotateLeftCommand(swerve, 180), 
+    //   new RotateLeftCommand(swerve, 180), 
 
-      new StrafeRightCommand(swerve, 10) */
-    );
+    //   new StrafeRightCommand(swerve, 10) */
+    // );
   }
 }

@@ -155,6 +155,7 @@ public class SwerveModule extends SubsystemBase{
         // Print to SmartDashboard
         SmartDashboard.putNumber("Swerve["+absoluteEncoder.getDeviceID()+"] desired enc", state.angle.getRadians()); //desired enc 
         SmartDashboard.putString("Swerve["+absoluteEncoder.getDeviceID()+"] state", state.toString());  
+
     }
 
     //stop modules 
