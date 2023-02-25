@@ -5,14 +5,16 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 public class MidHigh extends SequentialCommandGroup {
 
   public MidHigh() {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
+    // score cone on high node 
     addCommands(
       //claw in 
       // elev up 
       //pivot out 
+      //move forward
       //release claw 
-      //move backward and bring arm back (almost parallel)
+      //move backward 
+      //pivot in 
+      //elev down
     );
   }
 }

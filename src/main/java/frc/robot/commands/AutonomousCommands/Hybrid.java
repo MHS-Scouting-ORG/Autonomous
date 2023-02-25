@@ -8,13 +8,15 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 public class Hybrid extends SequentialCommandGroup {
   /** Creates a new SideHybrid. */
   public Hybrid() {
+    // score cone/cube on hybrid 
     addCommands(
-    //claw in 
-    // start lined up with community edge 
+    // claw in 
     // bring elev up and pivot out 
-    // parallel command: bring arm back down and drive forward 
-    //release claw 
-    //move backward??? 
+    // drive forward
+    // release claw 
+    // drive backward 
+    // pivot in 
+    // elev down 
     );
   }
 }

@@ -8,8 +8,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 public class midHighBal extends SequentialCommandGroup {
   /** Creates a new midHighBal. */
   public midHighBal() {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
+    // score high, then balance 
     addCommands(
       //claw in 
       //move backward 
