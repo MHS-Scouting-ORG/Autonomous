@@ -7,9 +7,9 @@ import frc.robot.commands.PivotCommands.PivotLowCommand;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.PivotSubsystem;
 
-public class HybridNode extends SequentialCommandGroup {
+public class LowPickup extends SequentialCommandGroup {
 
-  public HybridNode(PivotSubsystem pivotsub, ElevatorSubsystem elevsub) {
+  public LowPickup(PivotSubsystem pivotsub, ElevatorSubsystem elevsub) {
 
     addCommands(new MidPosition(elevsub), new PivotLowCommand(pivotsub), new LowPosition(elevsub));
   }
