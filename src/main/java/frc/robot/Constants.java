@@ -13,6 +13,51 @@ public final class Constants {
   }
 
   /////////////////////
+  //   CLAW CONSTS   //
+  /////////////////////
+
+  public static class ClawConsts {
+    public static final int WRIST_MOTOR_PORT = 15;
+    public static final int CLAW_FORWARD_CHANNEL = 0;
+    public static final int CLAW_REVERSE_CHANNEL = 8;
+
+    public static final double WRIST_SPEED = 0.75;
+
+    public static final double ROTATE_90 = 95;
+    public static final double ROTATION_T0_90_ENC = 95;
+    public static final double ROTATION_TO_180_ENC = 190;
+  }
+
+  /////////////////////////
+  //   ELEVATOR CONSTS   //
+  /////////////////////////
+
+  public static class ElevatorConsts {
+    public static final int ELEVATOR_MOTOR_PORT = 13;
+    public static final int TOP_LIMIT_PORT = 3;
+    public static final int BOTTOM_LIMIT_PORT = 0;
+  }
+
+  //////////////////////
+  //   PIVOT CONSTS   //
+  //////////////////////
+
+  public static class PivotConsts {
+    public static int PIVOT_MOTOR_PORT = 14;
+    public static int PIVOT_LIMIT_PORT = 2;
+  }
+
+  /////////////////////////////
+  //   LANDING GEAR CONSTS   //
+  /////////////////////////////
+
+  public static class LandingGearConsts{
+    public static final int  LANDING_GEAR_PISTON_FORWARD_CHANNEL = 7;
+    public static final int LANDING_GEAR_PISTON_REVERSE_CHANNEL = 15;
+    public static final int LANDING_GEAR_MOTOR_PORT = 16;
+  }
+
+  /////////////////////
   //   AUTO CONSTS   //
   /////////////////////
 
