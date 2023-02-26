@@ -101,6 +101,14 @@ public class ClawSubsystem extends SubsystemBase {
     }
   }
 
+  public void openClaw(){
+    claw.set(Value.kReverse);
+  }
+
+  public void closeClaw(){
+    claw.set(Value.kForward);
+  }
+
   public void toggle(){
     claw.toggle();
   }
@@ -110,6 +118,6 @@ public class ClawSubsystem extends SubsystemBase {
   public void periodic() {
     SmartDashboard.putString("Claw", claw.get().toString());
 
-    SmartDashboard.putNumber("Wirst Enc", wristEnc.getPosition());
+    SmartDashboard.putNumber("Wrist Enc", wristEnc.getPosition());
   }
 }

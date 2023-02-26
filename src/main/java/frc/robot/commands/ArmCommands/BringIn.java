@@ -3,6 +3,7 @@ package frc.robot.commands.ArmCommands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.PivotSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class BringIn extends CommandBase {
 
@@ -29,7 +30,9 @@ public class BringIn extends CommandBase {
   }
 
   @Override
-  public void execute() {}
+  public void execute() {
+    SmartDashboard.putString("Current Command", getName());
+  }
     
 
   @Override

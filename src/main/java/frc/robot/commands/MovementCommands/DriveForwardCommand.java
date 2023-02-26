@@ -1,5 +1,6 @@
 package frc.robot.commands.MovementCommands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.SwerveSubsystem;
 
@@ -21,11 +22,13 @@ public class DriveForwardCommand extends CommandBase{
 
     @Override
     public void execute(){
+        SmartDashboard.putBoolean("drive fwd", true);
         swerve.driveForward();
     }
 
     @Override
     public void end(boolean interrupted){
+        SmartDashboard.putBoolean("drive fwd", false); 
         swerve.stopModules();
     }
 

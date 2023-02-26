@@ -65,7 +65,7 @@ public class SwerveSubsystem extends SubsystemBase {
   /////////////////////
 
     public double getEnc() {
-        return frontLeft.getDrivePosition() * 10; 
+        return -frontLeft.getDrivePosition(); 
     }
 
     //returns yaw in degrees, 0-360
@@ -182,6 +182,7 @@ public class SwerveSubsystem extends SubsystemBase {
     public void periodic() {
     SmartDashboard.putNumber("Robot Yaw", getYawAngle());
     SmartDashboard.putNumber("Robot Pitch", getRoll());
+    SmartDashboard.putNumber("Drive Enc", getEnc());
     }
     
 

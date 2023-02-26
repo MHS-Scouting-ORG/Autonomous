@@ -1,5 +1,6 @@
 package frc.robot.commands.PivotCommands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.PivotSubsystem;
 
@@ -20,6 +21,7 @@ public class TuckedIn extends CommandBase{
 
     @Override
     public void execute(){
+        SmartDashboard.putBoolean("tuckedIn", false);
         if(!p_subs.isTucked()){
         p_subs.newSetpoint(p_subs.getEncoder());
         }
@@ -31,10 +33,11 @@ public class TuckedIn extends CommandBase{
 
     @Override
     public void end(boolean interrupted){
+        SmartDashboard.putBoolean("tuckedIn", true);
     }
     
     @Override
     public boolean isFinished(){
-        return !p_subs.isTucked();
+        return !p_subs.isTucked() || p_subs.isAtSetPoint();
     }
 }

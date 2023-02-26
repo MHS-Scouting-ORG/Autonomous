@@ -3,6 +3,7 @@ package frc.robot.commands.AutonomousCommands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.ArmCommands.HighAutoPositionParallel;
 import frc.robot.commands.ArmCommands.Tucked;
+import frc.robot.commands.ArmCommands.TuckedFromTop;
 import frc.robot.commands.ClawCommands.Claw;
 import frc.robot.commands.MovementCommands.DriveBackwardCommand;
 import frc.robot.commands.MovementCommands.DriveForwardCommand;
@@ -31,7 +32,7 @@ public class High extends SequentialCommandGroup {
       new DriveBackwardCommand(swerve, 100),
 
       // Arm in resting position (pivot in, elevator down) 
-      new Tucked().getCommand(pivot, elevator)
+      new TuckedFromTop(pivot, elevator)
 
     );
   }

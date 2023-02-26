@@ -3,6 +3,14 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.DriverControl;
 import frc.robot.commands.IncrementBalanceCommand;
+import frc.robot.commands.ArmCommands.Tucked;
+import frc.robot.commands.AutonomousCommands.Hybrid;
+import frc.robot.commands.ClawCommands.Claw;
+import frc.robot.commands.MovementCommands.DriveBackwardCommand;
+import frc.robot.commands.MovementCommands.DriveForwardCommand;
+import frc.robot.subsystems.ClawSubsystem;
+import frc.robot.subsystems.ElevatorSubsystem;
+import frc.robot.subsystems.PivotSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -15,6 +23,10 @@ import edu.wpi.first.wpilibj.XboxController;
 public class RobotContainer {
 
   private final SwerveSubsystem swerve = new SwerveSubsystem();
+  private final ClawSubsystem claw = new ClawSubsystem(); 
+  private final ElevatorSubsystem elev = new ElevatorSubsystem(); 
+  private final PivotSubsystem pivot = new PivotSubsystem();
+
   private final XboxController m_Controller = new XboxController(0); 
 
   public RobotContainer() {
@@ -29,11 +41,14 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    new JoystickButton(m_Controller, 1).onTrue(new IncrementBalanceCommand(swerve)); 
+    new JoystickButton(m_Controller, 1).onTrue(new Claw(claw)); 
     new JoystickButton(m_Controller, 2).onTrue(new InstantCommand(() -> swerve.resetNavx())); 
+    new JoystickButton(m_Controller, 3).onTrue(new Tucked().getCommand(pivot, elev));
   }
 
   public Command getAutonomousCommand() {
-    return new IncrementBalanceCommand(swerve);
+    return //new DriveForwardCommand(swerve, 200);
+    new Hybrid(swerve, claw, pivot, elev);
+    //new DriveBackwardCommand(swerve, 100);
   }
 }

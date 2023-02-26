@@ -138,9 +138,9 @@ public class SwerveModule extends SubsystemBase{
         turningMotor.set(turningPID.calculate(getAbsoluteEncoder(), state.angle.getRadians()));
 
         // Print to SmartDashboard
-        SmartDashboard.putString("Swerve["+absoluteEncoder.getDeviceID()+"] state", state.toString());
+        //SmartDashboard.putString("Swerve["+absoluteEncoder.getDeviceID()+"] state", state.toString());
         SmartDashboard.putNumber("Swerve["+absoluteEncoder.getDeviceID()+"] drive speed", getDriveSpeed());
-        SmartDashboard.putNumber("Swerve["+absoluteEncoder.getDeviceID()+"] angle", getAbsoluteEncoder());
+        //SmartDashboard.putNumber("Swerve["+absoluteEncoder.getDeviceID()+"] angle", getAbsoluteEncoder());
     }
 
     //sets the desired angle of the module (for right joystick)
@@ -153,8 +153,8 @@ public class SwerveModule extends SubsystemBase{
         turningMotor.set(turningPID.calculate(getAbsoluteEncoder(), state.angle.getRadians()));
 
         // Print to SmartDashboard
-        SmartDashboard.putNumber("Swerve["+absoluteEncoder.getDeviceID()+"] desired enc", state.angle.getRadians()); //desired enc 
-        SmartDashboard.putString("Swerve["+absoluteEncoder.getDeviceID()+"] state", state.toString());  
+        //SmartDashboard.putNumber("Swerve["+absoluteEncoder.getDeviceID()+"] desired enc", state.angle.getRadians()); //desired enc 
+        //SmartDashboard.putString("Swerve["+absoluteEncoder.getDeviceID()+"] state", state.toString());  
     }
 
     //stop modules 
@@ -179,10 +179,10 @@ public class SwerveModule extends SubsystemBase{
 
         // turningPID.setPID(kp, ki, kd);
 
-        SmartDashboard.putNumber("Swerve["+absoluteEncoder.getDeviceID()+"] turning enc", getTurningPosition());
-        SmartDashboard.putNumber("Swerve["+absoluteEncoder.getDeviceID()+"] angle", getAbsoluteEncoder());
+        //SmartDashboard.putNumber("Swerve["+absoluteEncoder.getDeviceID()+"] turning enc", getTurningPosition());
+        //SmartDashboard.putNumber("Swerve["+absoluteEncoder.getDeviceID()+"] angle", getAbsoluteEncoder());
         SmartDashboard.putNumber("Swerve["+absoluteEncoder.getDeviceID()+"] drive speed", getDriveSpeed());
-        SmartDashboard.putNumber("Swerve["+absoluteEncoder.getDeviceID()+"] turning speed", getTurningSpeed());
+        //SmartDashboard.putNumber("Swerve["+absoluteEncoder.getDeviceID()+"] turning speed", getTurningSpeed());
     }
 
 }
