@@ -14,18 +14,26 @@ import frc.robot.subsystems.SwerveSubsystem;
 
 public class High extends SequentialCommandGroup {
 
+
+  // Standard High Scoring Auto
+
   public High(SwerveSubsystem swerve, ClawSubsystem claw, PivotSubsystem pivot, ElevatorSubsystem elevator) {
 
     addCommands(
 
+      // Set elevator and pivot to high position
       new TopNode(pivot, elevator),
 
+      // Drive forward slightly
       new DriveForwardCommand(swerve, 0),
 
+      // Open claw
       new Claw(claw),
 
+      // Drive backward slightly
       new DriveBackwardCommand(swerve, 0),
 
+      // Tuck in elevator and pivot
       new Tucked().getCommand(pivot, elevator)
     );
   }
