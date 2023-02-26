@@ -3,6 +3,7 @@ package frc.robot.commands.AutonomousCommands;
 import edu.wpi.first.wpilibj.simulation.ElevatorSim;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.ArmCommands.HighAutoPositionParallel;
+import frc.robot.commands.ArmCommands.LowPickup;
 import frc.robot.commands.ArmCommands.Tucked;
 import frc.robot.commands.ClawCommands.Claw;
 import frc.robot.commands.MovementCommands.DriveBackwardCommand;
@@ -19,7 +20,7 @@ public class Hybrid extends SequentialCommandGroup {
     //SCORE CONE IN HYBRID GOAL 
     addCommands(
       // Arm in hybrid goal position (pivot out, elevator down) 
-      
+      new LowPickup(pivot, elevator),
 
       // Move forward 
       new DriveForwardCommand(swerve, 100), 
