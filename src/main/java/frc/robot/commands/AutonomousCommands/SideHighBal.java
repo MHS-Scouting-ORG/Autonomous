@@ -18,7 +18,7 @@ public class SideHighBal extends SequentialCommandGroup {
 
   public SideHighBal(SwerveSubsystem swerve, ClawSubsystem claw, PivotSubsystem pivot, ElevatorSubsystem elevator) {
 
-    //SCORE CONE ON A HIGH NODE, PICK UP A CUBE, THEN BALANCE 
+    // SCORE CONE ON A HIGH NODE, PICK UP A CUBE, THEN BALANCE 
     addCommands(
       // High goal position (elevator up, pivot out) 
       new HighAutoPositionParallel(pivot, elevator),
