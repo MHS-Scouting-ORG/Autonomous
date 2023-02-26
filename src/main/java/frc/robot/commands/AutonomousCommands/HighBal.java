@@ -4,23 +4,19 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.ClawCommands.Claw;
 import frc.robot.commands.DriveCommands.DriveBackwardCommand;
 import frc.robot.commands.DriveCommands.DriveForwardCommand;
-import frc.robot.commands.DriveCommands.RotateLeftCommand;
-import frc.robot.commands.DriveCommands.StrafeLeftCommand;
 import frc.robot.commands.ElevatorCommands.BringIn;
-import frc.robot.commands.SequentialElevatorPivotCommands.HybridNode;
 import frc.robot.commands.SequentialElevatorPivotCommands.TopNode;
 import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.PivotSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 
+public class HighBal extends SequentialCommandGroup {
 
-public class SideHighBal extends SequentialCommandGroup {
+  public HighBal(SwerveSubsystem swerve, ClawSubsystem claw, PivotSubsystem pivot, ElevatorSubsystem elevator) {
 
-  public SideHighBal(SwerveSubsystem swerve, ClawSubsystem claw, PivotSubsystem pivot, ElevatorSubsystem elevator) {
-    
     addCommands(
-
+      
       new TopNode(pivot, elevator),
 
       new DriveForwardCommand(swerve, 10),
@@ -29,17 +25,7 @@ public class SideHighBal extends SequentialCommandGroup {
 
       new DriveBackwardCommand(swerve, 10),
 
-      new HybridNode(pivot, elevator),
-
-      new RotateLeftCommand(swerve, 180),
-
-      new DriveForwardCommand(swerve, 100),
-
-      new Claw(claw),
-
       new BringIn(pivot, elevator),
-
-      new StrafeLeftCommand(swerve, 10), // On left side it would be right
 
       new IncrementBalanceCommand(swerve)
     );

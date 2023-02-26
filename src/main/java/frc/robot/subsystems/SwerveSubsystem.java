@@ -57,6 +57,10 @@ public class SwerveSubsystem extends SubsystemBase {
         navx.zeroYaw();
     }
 
+    public double getRoll() {
+        return navx.getRoll();
+    }
+
     public double getYawAngle(){
         return ( /* navx.getYaw() */  navx.getAngle() % 360  /*360-navx.getYaw()*/ );
     }
