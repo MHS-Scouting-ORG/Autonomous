@@ -6,8 +6,9 @@ import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.PivotSubsystem;
 
 public class Tucked {
-  /** Creates a new Tucked. */
 
+// TUCKED/RESTING POSITION
+// use Tucked.getCommand() 
 public static CommandBase getCommand(PivotSubsystem pivotSub, ElevatorSubsystem elevSub){
   return new ProxyCommand(() -> {
     if (elevSub.getEncoder() < 160) {
@@ -17,6 +18,4 @@ public static CommandBase getCommand(PivotSubsystem pivotSub, ElevatorSubsystem 
     }
   });
 }
-
-  // Called when the command is initially scheduled.
 }
