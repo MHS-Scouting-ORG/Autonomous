@@ -43,7 +43,6 @@ public class RobotContainer {
   private void configureBindings() {
     new JoystickButton(m_Controller, 1).onTrue(new Claw(claw)); 
     new JoystickButton(m_Controller, 2).onTrue(new InstantCommand(() -> swerve.resetNavx())); 
-    new JoystickButton(m_Controller, 3).onTrue(new Tucked().getCommand(pivot, elev));
   }
 
   public Command getAutonomousCommand() {
