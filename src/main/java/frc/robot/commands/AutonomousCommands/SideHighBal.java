@@ -6,8 +6,8 @@ import frc.robot.commands.DriveCommands.DriveBackwardCommand;
 import frc.robot.commands.DriveCommands.DriveForwardCommand;
 import frc.robot.commands.DriveCommands.RotateLeftCommand;
 import frc.robot.commands.DriveCommands.StrafeLeftCommand;
-import frc.robot.commands.ElevatorCommands.BringIn;
-import frc.robot.commands.SequentialElevatorPivotCommands.HybridNode;
+import frc.robot.commands.SequentialElevatorPivotCommands.Tucked;
+import frc.robot.commands.SequentialElevatorPivotCommands.LowPickup;
 import frc.robot.commands.SequentialElevatorPivotCommands.TopNode;
 import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
@@ -29,7 +29,7 @@ public class SideHighBal extends SequentialCommandGroup {
 
       new DriveBackwardCommand(swerve, 10),
 
-      new HybridNode(pivot, elevator),
+      new LowPickup(pivot, elevator),
 
       new RotateLeftCommand(swerve, 180),
 
@@ -37,7 +37,7 @@ public class SideHighBal extends SequentialCommandGroup {
 
       new Claw(claw),
 
-      new BringIn(pivot, elevator),
+      new Tucked().getCommand(pivot, elevator),
 
       new StrafeLeftCommand(swerve, 10), // On left side it would be right
 

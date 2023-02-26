@@ -4,9 +4,9 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.ClawCommands.Claw;
 import frc.robot.commands.DriveCommands.DriveBackwardCommand;
 import frc.robot.commands.DriveCommands.DriveForwardCommand;
-import frc.robot.commands.ElevatorCommands.BringIn;
+import frc.robot.commands.SequentialElevatorPivotCommands.Tucked;
 import frc.robot.commands.ElevatorCommands.MidPosition;
-import frc.robot.commands.SequentialElevatorPivotCommands.HybridNode;
+import frc.robot.commands.SequentialElevatorPivotCommands.LowPickup;
 import frc.robot.commands.SequentialElevatorPivotCommands.MidNode;
 import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
@@ -19,7 +19,7 @@ public class Hybrid extends SequentialCommandGroup {
     
     addCommands(
       
-      new HybridNode(pivot, elevator),
+      new LowPickup(pivot, elevator),
 
       new DriveForwardCommand(swerve, 10),
 
@@ -27,7 +27,7 @@ public class Hybrid extends SequentialCommandGroup {
 
       new DriveBackwardCommand(swerve, 10),
 
-      new BringIn(pivot, elevator)
+      new Tucked().getCommand(pivot, elevator)
 
     );
   }
