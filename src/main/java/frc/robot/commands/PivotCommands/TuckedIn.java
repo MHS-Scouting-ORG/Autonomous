@@ -7,6 +7,7 @@ public class TuckedIn extends CommandBase{
     private PivotSubsystem p_subs;
     private int setpoint;
 
+    //PIVOT TUCKED INTO ROBOT PERIMETER 
     public TuckedIn(PivotSubsystem subs){
         p_subs = subs;
         setpoint = -5;

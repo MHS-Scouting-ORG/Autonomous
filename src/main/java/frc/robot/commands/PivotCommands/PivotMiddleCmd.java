@@ -7,6 +7,7 @@ public class PivotMiddleCmd extends CommandBase{
     private PivotSubsystem p_subsystem; 
     private double setpoint;
 
+    //PIVOT TO MIDDLE SCORING POSITION
     public PivotMiddleCmd(PivotSubsystem p_subs){ // Pivot PID Constructor 
         p_subsystem = p_subs;
         addRequirements(p_subs);

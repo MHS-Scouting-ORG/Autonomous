@@ -7,6 +7,8 @@ import frc.robot.subsystems.ElevatorSubsystem;
 public class MidPosition extends CommandBase {
   ElevatorSubsystem elevSub;
   double setPoint;
+
+  // ELEV TO MID POSITION 
   public MidPosition(ElevatorSubsystem elevSubystem) {
     elevSub = elevSubystem;
     setPoint = 120;

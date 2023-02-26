@@ -3,7 +3,7 @@ package frc.robot.commands.ClawCommands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClawSubsystem;
 
-//TOGGLE CLAW 
+//TOGGLE CLAW (CLOSE AND OPEN)
 public class Claw extends CommandBase {
   private ClawSubsystem clawSubsystem;
 

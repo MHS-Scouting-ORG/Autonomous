@@ -8,6 +8,9 @@ public class BringIn extends CommandBase {
 
   PivotSubsystem pivotSub;
   ElevatorSubsystem elevSub;
+
+  // BRING ARM INTO RESTING POSITION 
+  // USE TUCKED INSTEAD 
   public BringIn(PivotSubsystem pivotSub, ElevatorSubsystem elevSub) {
     this.pivotSub = pivotSub;
     this.elevSub = elevSub;

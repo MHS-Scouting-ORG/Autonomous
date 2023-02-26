@@ -7,6 +7,8 @@ import frc.robot.subsystems.ElevatorSubsystem;
 public class LowPosition extends CommandBase {
   ElevatorSubsystem elevSub;
   double setPoint;
+
+  // ELEV TO LOW POSITION 
   public LowPosition(ElevatorSubsystem elevSubystem) {
     elevSub = elevSubystem;
     setPoint = 6;

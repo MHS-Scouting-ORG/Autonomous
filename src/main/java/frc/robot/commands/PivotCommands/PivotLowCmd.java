@@ -7,6 +7,7 @@ import frc.robot.subsystems.PivotSubsystem;
 public class PivotLowCmd extends CommandBase{
     private PivotSubsystem p_subs;
 
+    //PIVOT RESTING ON BUMPER 
     public PivotLowCmd(PivotSubsystem subs){
         p_subs = subs;
         addRequirements(subs);

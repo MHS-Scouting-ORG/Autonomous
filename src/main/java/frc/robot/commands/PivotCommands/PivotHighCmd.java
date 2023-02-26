@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class PivotHighCmd extends CommandBase{
     private PivotSubsystem p_subsystem; 
 
+    // PIVOT TO HIGH SCORING POSITION 
     public PivotHighCmd(PivotSubsystem p_subs){ // Pivot PID Constructor 
         p_subsystem = p_subs;
         addRequirements(p_subs);
