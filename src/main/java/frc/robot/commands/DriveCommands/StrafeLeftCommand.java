@@ -1,14 +1,12 @@
-
-package frc.robot.commands.MovementCommands;
-
+package frc.robot.commands.DriveCommands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.SwerveSubsystem;
 
-public class StrafeRightCommand extends CommandBase {
+public class StrafeLeftCommand extends CommandBase {
   private final SwerveSubsystem swerve; 
   private double desiredEnc; 
 
-  public StrafeRightCommand(SwerveSubsystem newSwerve, double newDesiredEnc) {
+  public StrafeLeftCommand(SwerveSubsystem newSwerve, double newDesiredEnc) {
     swerve = newSwerve; 
     desiredEnc = newDesiredEnc; 
 
@@ -22,7 +20,7 @@ public class StrafeRightCommand extends CommandBase {
 
   @Override
   public void execute() {
-    swerve.strafeRight();
+    swerve.strafeLeft();
   }
 
   @Override
@@ -32,6 +30,6 @@ public class StrafeRightCommand extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return swerve.getEnc() < -desiredEnc;
+    return swerve.getEnc() > desiredEnc;
   }
 }

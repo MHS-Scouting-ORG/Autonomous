@@ -1,28 +1,24 @@
-package frc.robot.commands.MovementCommands;
-
+package frc.robot.commands.DriveCommands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants.SwerveConsts;
 import frc.robot.subsystems.SwerveSubsystem;
 
-public class RotateLeftCommand extends CommandBase {
+public class RotateRightCommand extends CommandBase {
   private final SwerveSubsystem swerve; 
   private double desiredAngle; 
 
-  public RotateLeftCommand(SwerveSubsystem newSwerve, double newDesiredAngle) {
-    swerve = newSwerve; 
-    desiredAngle = swerve.getAngle() - newDesiredAngle; 
+  public RotateRightCommand(SwerveSubsystem newSwerve, double newDesiredAngle) {
+    swerve = newSwerve;
+    desiredAngle = swerve.getAngle() + newDesiredAngle; 
 
     addRequirements(swerve);
   }
 
   @Override
-  public void initialize() {
-
-  }
+  public void initialize() {}
 
   @Override
   public void execute() {
-    swerve.rotateLeft();
+    swerve.rotateRight();
   }
 
   @Override

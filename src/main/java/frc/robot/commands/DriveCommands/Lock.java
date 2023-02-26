@@ -1,6 +1,5 @@
-package frc.robot.commands;
+package frc.robot.commands.DriveCommands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.SwerveSubsystem;
 
@@ -16,12 +15,12 @@ public class Lock extends CommandBase{
 
     @Override
     public void initialize(){
-        SmartDashboard.putString("Current Command", "Robot Locked!");
     }
 
     @Override
     public void execute(){
         swerve.lock();
+        
     }
 
     @Override

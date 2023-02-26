@@ -1,13 +1,14 @@
-package frc.robot.commands.MovementCommands;
+package frc.robot.commands.DriveCommands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.SwerveSubsystem;
 
-public class StrafeLeftCommand extends CommandBase {
+public class DriveBackwardCommand extends CommandBase {
   private final SwerveSubsystem swerve; 
   private double desiredEnc; 
 
-  public StrafeLeftCommand(SwerveSubsystem newSwerve, double newDesiredEnc) {
+  public DriveBackwardCommand(SwerveSubsystem newSwerve, double newDesiredEnc) {
     swerve = newSwerve; 
     desiredEnc = newDesiredEnc; 
 
@@ -21,7 +22,8 @@ public class StrafeLeftCommand extends CommandBase {
 
   @Override
   public void execute() {
-    swerve.strafeLeft();
+    SmartDashboard.putString("Current Command", getName());
+    swerve.driveBackward();
   }
 
   @Override
@@ -31,6 +33,6 @@ public class StrafeLeftCommand extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return swerve.getEnc() > desiredEnc;
+    return swerve.getEnc() < -desiredEnc;
   }
 }

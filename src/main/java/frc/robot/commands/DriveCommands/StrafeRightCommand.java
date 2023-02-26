@@ -1,14 +1,12 @@
-package frc.robot.commands.MovementCommands;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+package frc.robot.commands.DriveCommands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.SwerveSubsystem;
 
-public class DriveBackwardCommand extends CommandBase {
+public class StrafeRightCommand extends CommandBase {
   private final SwerveSubsystem swerve; 
   private double desiredEnc; 
 
-  public DriveBackwardCommand(SwerveSubsystem newSwerve, double newDesiredEnc) {
+  public StrafeRightCommand(SwerveSubsystem newSwerve, double newDesiredEnc) {
     swerve = newSwerve; 
     desiredEnc = newDesiredEnc; 
 
@@ -22,8 +20,7 @@ public class DriveBackwardCommand extends CommandBase {
 
   @Override
   public void execute() {
-    SmartDashboard.putString("Current Command", getName());
-    swerve.driveBackward();
+    swerve.strafeRight();
   }
 
   @Override

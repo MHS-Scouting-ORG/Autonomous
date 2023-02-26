@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.DriveCommands;
 
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
@@ -16,10 +16,7 @@ public class DriverControl extends CommandBase{
     private SwerveSubsystem swerveSubsystem;
     private DoubleSupplier xSupplier, ySupplier, zSupplier;
     private BooleanSupplier fieldOriented;
-
-    /////////////////////
-    //   CONSTRUCTOR   //
-    /////////////////////
+    // private SlewRateLimiter xLimiter, yLimiter, zLimiter;
 
     public DriverControl(SwerveSubsystem subs, DoubleSupplier xSupplier, DoubleSupplier ySupplier, DoubleSupplier zSupplier,
         BooleanSupplier fieldOriented) {
@@ -29,19 +26,13 @@ public class DriverControl extends CommandBase{
             this.zSupplier = zSupplier;
             this.fieldOriented = fieldOriented;
 
+
+            // this.xLimiter = new SlewRateLimiter(0.5);
+            // this.yLimiter = new SlewRateLimiter(0.5);
+            // this.zLimiter = new SlewRateLimiter(0.5);
+
             addRequirements(subs);
     }
-
-    public double deadzone(double num){
-        return Math.abs(num) > 0.01 ? num : 0;
-    }
-
-    private static double modifyAxis(double num) {
-        // Square the axis
-        num = Math.copySign(num * num, num);
-    
-        return num;
-      }
 
     @Override
     public void initialize() {
@@ -51,9 +42,9 @@ public class DriverControl extends CommandBase{
     @Override
     public void execute() {
         // Get values from joysticks
-        double xSpeed = xSupplier.getAsDouble();
-        double ySpeed = ySupplier.getAsDouble();
-        double zSpeed = zSupplier.getAsDouble();
+        double xSpeed = xSupplier.getAsDouble()*0.75;
+        double ySpeed = ySupplier.getAsDouble()*0.75;
+        double zSpeed = zSupplier.getAsDouble()*0.75;
 
         // Deadzone
         xSpeed = deadzone(xSpeed);
@@ -68,8 +59,8 @@ public class DriverControl extends CommandBase{
         // Chassis Speeds
         ChassisSpeeds chassisSpeeds;
         if(fieldOriented.getAsBoolean()) {
-            xSpeed *= Math.cos(swerveSubsystem.getRobotRotation().getDegrees());
-            ySpeed *= Math.sin(swerveSubsystem.getRobotRotation().getDegrees());
+            xSpeed = xSpeed * Math.cos(swerveSubsystem.getRobotRotation().getDegrees());
+            ySpeed = ySpeed * Math.sin(swerveSubsystem.getRobotRotation().getDegrees());
             //chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, zSpeed, swerveSubsystem.getRobotRotation());
             chassisSpeeds = new ChassisSpeeds(xSpeed, ySpeed, zSpeed);
         } else {
@@ -77,7 +68,7 @@ public class DriverControl extends CommandBase{
         }
 
         // Convert chassis speeds to individual module states
-        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(chassisSpeeds);
+        SwerveModuleState[] moduleStates = SwerveConsts.DRIVE_KINEMATICS.toSwerveModuleStates(chassisSpeeds);
 
         // Set each module state to wheels
         swerveSubsystem.setModuleStates(moduleStates);
@@ -93,5 +84,18 @@ public class DriverControl extends CommandBase{
     @Override
     public boolean isFinished(){
         return false;
+    }
+
+    /* * * ADDED METHODS * * */
+
+    public double deadzone(double num){
+        return Math.abs(num) > 0.01 ? num : 0;
+    }
+
+    private static double modifyAxis(double num) {
+        // Square the axis
+        num = Math.copySign(num * num, num);
+    
+        return num;
     }
 }
