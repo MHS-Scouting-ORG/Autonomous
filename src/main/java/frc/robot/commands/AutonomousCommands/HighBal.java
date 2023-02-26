@@ -7,24 +7,26 @@ import frc.robot.commands.MovementCommands.DriveForwardCommand;
 import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 
-public class Hybrid extends SequentialCommandGroup {
+public class HighBal extends SequentialCommandGroup {
 
-  public Hybrid(SwerveSubsystem swerve, ClawSubsystem claw) {
+  // SCORE CONE ON HIGH NODE, BALANCE
+  public HighBal(SwerveSubsystem swerve, ClawSubsystem claw) {
 
-    //SCORE CONE IN HYBRID GOAL 
     addCommands(
-      // Arm in hybrid goal position (pivot out, elevator down) 
+      // High goal position (elevator up, pivot out) (parallel cmd) 
 
-      // Move forward 
-      new DriveForwardCommand(swerve, 100), 
+      // Move forward
+      new DriveForwardCommand(swerve, 100),
 
-      // Open claw 
+      // Open claw
       new Claw(claw),
 
       // Move backward
       new DriveBackwardCommand(swerve, 100)
 
-      // Arm in resting position (pivot in, elevator down) 
+      // Arm in resting position (pivot in, elevator down)
+
+      // Move backward onto Charge Station and balance
 
     );
   }

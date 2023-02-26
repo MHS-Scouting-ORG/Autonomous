@@ -33,9 +33,11 @@ public final class Constants {
   /////////////////////////
 
   public static class ElevatorConsts {
-    public static final int ELEVATOR_MOTOR_PORT = 13;
-    public static final int TOP_LIMIT_PORT = 3;
-    public static final int BOTTOM_LIMIT_PORT = 0;
+    public static final int kDriverControllerPort = 0;
+    public static final int ELEVATOR_ID = 13;
+    public static final int TOP_LIMIT_SWITCH = 3;
+    public static final int BOTTOM_LIMIT_SWITCH = 0;
+    public static final int JOYSTICK = 0;
   }
 
   //////////////////////
