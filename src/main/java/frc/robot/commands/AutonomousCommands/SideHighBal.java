@@ -1,21 +1,27 @@
 package frc.robot.commands.AutonomousCommands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.ArmCommands.HighAutoPositionParallel;
+import frc.robot.commands.ArmCommands.LowPickup;
+import frc.robot.commands.ArmCommands.Tucked;
 import frc.robot.commands.ClawCommands.Claw;
 import frc.robot.commands.MovementCommands.DriveBackwardCommand;
 import frc.robot.commands.MovementCommands.DriveForwardCommand;
 import frc.robot.commands.MovementCommands.RotateRightCommand;
 import frc.robot.commands.MovementCommands.StrafeLeftCommand;
 import frc.robot.subsystems.ClawSubsystem;
+import frc.robot.subsystems.ElevatorSubsystem;
+import frc.robot.subsystems.PivotSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 
 public class SideHighBal extends SequentialCommandGroup {
 
-  public SideHighBal(SwerveSubsystem swerve, ClawSubsystem claw) {
+  public SideHighBal(SwerveSubsystem swerve, ClawSubsystem claw, PivotSubsystem pivot, ElevatorSubsystem elevator) {
 
     //SCORE CONE ON A HIGH NODE, PICK UP A CUBE, THEN BALANCE 
     addCommands(
       // High goal position (elevator up, pivot out) 
+      new HighAutoPositionParallel(pivot, elevator),
 
       // Drive forward 
       new DriveForwardCommand(swerve, 100),
@@ -27,6 +33,7 @@ public class SideHighBal extends SequentialCommandGroup {
       new DriveBackwardCommand(swerve, 100),
 
       // Arm in grabbing position (pivot in, elevator down) 
+      new LowPickup(pivot, elevator),
 
       // Turn to face cube 
       new RotateRightCommand(swerve, 100),
@@ -38,6 +45,7 @@ public class SideHighBal extends SequentialCommandGroup {
       new Claw(claw),
 
       // Arm in resting/storage position (elevator up, pivot in) 
+      new Tucked().getCommand(pivot, elevator),
 
       // Strafe left (on left side it would be right)
       new StrafeLeftCommand(swerve, 100),
