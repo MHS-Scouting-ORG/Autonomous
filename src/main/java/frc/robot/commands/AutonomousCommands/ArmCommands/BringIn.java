@@ -1,4 +1,4 @@
-package frc.robot.commands.ElevatorCommands;
+package frc.robot.commands.AutonomousCommands.ArmCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ElevatorSubsystem;
