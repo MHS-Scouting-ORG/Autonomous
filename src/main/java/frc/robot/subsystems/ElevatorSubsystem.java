@@ -136,8 +136,6 @@ public class ElevatorSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("encoder counts", encoderValue);
     //SmartDashboard.putNumber("Setpoint", setpoint);
     //SmartDashboard.putNumber("error", getError());
-    //SmartDashboard.putNumber("tolerance", pid.getPositionTolerance());
-
-    SmartDashboard.putBoolean("elev at setpt", isAtSetpoint());
+    //SmartDashboard.putNumber("tolerance", pid.getPositionTolerance());  
   }
 }

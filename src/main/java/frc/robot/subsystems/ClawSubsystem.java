@@ -116,7 +116,7 @@ public class ClawSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putString("Claw", claw.get().toString());
+    SmartDashboard.putBoolean("Closed?", claw.get().toString().equals("kForward"));
 
     SmartDashboard.putNumber("Wrist Enc", wristEnc.getPosition());
   }

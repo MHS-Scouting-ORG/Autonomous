@@ -42,11 +42,11 @@ public class LowPosition extends CommandBase {
   @Override
   public boolean isFinished() {
     if(elevSub.bottomPressed() || elevSub.isAtSetpoint()){ // stops if the elevator is at the given point
-      SmartDashboard.putBoolean("LowPos fin?", true);
+      //SmartDashboard.putBoolean("LowPos fin?", true);
       return true;
     }
      else{ 
-      SmartDashboard.putBoolean("LowPos fin?", false);
+      //SmartDashboard.putBoolean("LowPos fin?", false);
       return false;
     }  
   }  

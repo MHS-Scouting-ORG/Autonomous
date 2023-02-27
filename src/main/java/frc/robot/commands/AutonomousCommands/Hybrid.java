@@ -38,7 +38,7 @@ public class Hybrid extends SequentialCommandGroup {
 
 
       // Move backward
-      new DriveBackwardCommand(swerve, 120)
+      new DriveBackwardCommand(swerve, 20)
     );
   }
 }

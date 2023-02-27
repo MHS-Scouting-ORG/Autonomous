@@ -4,10 +4,12 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.DriverControl;
 import frc.robot.commands.IncrementBalanceCommand;
 import frc.robot.commands.ArmCommands.Tucked;
+import frc.robot.commands.AutonomousCommands.High;
 import frc.robot.commands.AutonomousCommands.Hybrid;
 import frc.robot.commands.ClawCommands.Claw;
 import frc.robot.commands.MovementCommands.DriveBackwardCommand;
 import frc.robot.commands.MovementCommands.DriveForwardCommand;
+import frc.robot.commands.MovementCommands.RotateRightCommand;
 import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.PivotSubsystem;
@@ -43,11 +45,11 @@ public class RobotContainer {
   private void configureBindings() {
     new JoystickButton(m_Controller, 1).onTrue(new Claw(claw)); 
     new JoystickButton(m_Controller, 2).onTrue(new InstantCommand(() -> swerve.resetNavx())); 
+    new JoystickButton(m_Controller, 3).onTrue(Tucked.getCommand(pivot, elev));
   }
 
   public Command getAutonomousCommand() {
-    return //new DriveForwardCommand(swerve, 200);
-    new Hybrid(swerve, claw, pivot, elev);
-    //new DriveBackwardCommand(swerve, 100);
+    return new RotateRightCommand(swerve, 180);//High(swerve, claw, pivot, elev);
+    //new Hybrid(swerve, claw, pivot, elev);
   }
 }

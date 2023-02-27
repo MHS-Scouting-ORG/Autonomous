@@ -65,7 +65,7 @@ public class SwerveSubsystem extends SubsystemBase {
   /////////////////////
 
     public double getEnc() {
-        return -frontLeft.getDrivePosition(); 
+        return frontLeft.getDrivePosition(); 
     }
 
     //returns yaw in degrees, 0-360
