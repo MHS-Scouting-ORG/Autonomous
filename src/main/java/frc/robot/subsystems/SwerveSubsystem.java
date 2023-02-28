@@ -2,7 +2,9 @@ package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
@@ -20,6 +22,9 @@ public class SwerveSubsystem extends SubsystemBase {
     private SwerveModule frontRight;
 
     private SwerveModuleState states;
+
+    private Pose2d pose2d;
+    private Translation2d translation2d;
 
     private AHRS navx;
 
@@ -41,6 +46,9 @@ public class SwerveSubsystem extends SubsystemBase {
             SwerveConsts.FR_absoluteEncoderPort, SwerveConsts.FR_offset , false, true, true);
 
         navx = new AHRS(SPI.Port.kMXP);
+        
+        translation2d = new Translation2d(getAngle(), getYawAngle());
+        pose2d = new Pose2d(translation2d, getRobotRotation());
 
         navx.zeroYaw();
     }
