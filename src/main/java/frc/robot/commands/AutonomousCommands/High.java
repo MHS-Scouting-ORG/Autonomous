@@ -3,7 +3,6 @@ package frc.robot.commands.AutonomousCommands;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.ArmCommands.HighAutoPositionParallel;
-import frc.robot.commands.ArmCommands.Tucked;
 import frc.robot.commands.ArmCommands.TuckedFromBottom;
 import frc.robot.commands.ArmCommands.TuckedFromTop;
 import frc.robot.commands.ClawCommands.Claw;
@@ -14,7 +13,6 @@ import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.PivotSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
-import frc.robot.commands.ArmCommands.Tucked;
 
 public class High extends SequentialCommandGroup {
 

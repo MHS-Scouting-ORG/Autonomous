@@ -11,9 +11,6 @@ public class IncrementBalanceCommand extends CommandBase {
   private final Timer timer, autoTimer; 
   private int counter;
 
-  private double lSpeed; 
-  private double rSpeed; 
-
   public IncrementBalanceCommand(SwerveSubsystem newSwerve) {
     swerve = newSwerve;
     timer = new Timer();

@@ -9,8 +9,6 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.AutoConsts;
-import frc.robot.Constants.AutoConsts;
 import frc.robot.Constants.SwerveConsts;
 
 public class SwerveSubsystem extends SubsystemBase {
@@ -19,7 +17,7 @@ public class SwerveSubsystem extends SubsystemBase {
     private SwerveModule backRight;
     private SwerveModule frontRight;
 
-    private SwerveModuleState states;
+    //private SwerveModuleState states;
 
     private AHRS navx;
 
