@@ -133,33 +133,33 @@ public class SwerveSubsystem extends SubsystemBase {
   //   AUTONOMOUS BASICS   //
   ///////////////////////////
 
-    public void driveForward(){
-        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(AutoConsts.driveTranslationSpeed, 0, 0));
+    public void driveForward(double xSpeed){
+        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(xSpeed, 0, 0));
         setModuleStates(moduleStates);
     }
 
-    public void driveBackward(){
-        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(-AutoConsts.driveTranslationSpeed, 0, 0));
+    public void driveBackward(double xSpeed){
+        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(-xSpeed, 0, 0));
         setModuleStates(moduleStates);
     }
 
-    public void strafeLeft(){
-        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, -AutoConsts.driveTranslationSpeed, 0));
+    public void strafeLeft(double ySpeed){
+        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, -ySpeed, 0));
         setModuleStates(moduleStates);
     }
 
-    public void strafeRight(){
-        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, AutoConsts.driveTranslationSpeed, 0));
+    public void strafeRight(double ySpeed){
+        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, ySpeed, 0));
         setModuleStates(moduleStates);
     }
 
-    public void rotateLeft(){
-        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, 0, -AutoConsts.driveRotationSpeed));
+    public void rotateLeft(double rotationSpeed){
+        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, 0, -rotationSpeed));
         setModuleStates(moduleStates);
     }
 
-    public void rotateRight(){
-        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, 0, AutoConsts.driveRotationSpeed));
+    public void rotateRight(double rotationSpeed){
+        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, 0, rotationSpeed));
         setModuleStates(moduleStates);
     }
 

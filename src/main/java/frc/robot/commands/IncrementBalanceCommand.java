@@ -22,14 +22,6 @@ public class IncrementBalanceCommand extends CommandBase {
     addRequirements(swerve);
   }
 
-  private boolean robotRight() {
-    return swerve.getYawAngle() > 0 && swerve.getYawAngle() < 90; 
-  }
-
-  private boolean robotLeft() {
-    return swerve.getYawAngle() < 360 && swerve.getYawAngle() > 270; 
-  }
-
   @Override
   public void initialize() {
     autoTimer.start();
@@ -39,19 +31,51 @@ public class IncrementBalanceCommand extends CommandBase {
 
   @Override
   public void execute() {
-/* 
-    if (robotRight()) {
-      lSpeed = AutoConsts.driTranslationSlowSpeed; 
-      rSpeed = AutoConsts.driveTranslationSpeed; 
-    } else if (robotLeft()) {
-      lSpeed = AutoConsts.driveTranslationSpeed; 
-      rSpeed = AutoConsts.driTranslationSlowSpeed; 
-    } else {
-      lSpeed = AutoConsts.driveTranslationSpeed; 
-      rSpeed = AutoConsts.driveTranslationSpeed; 
-    } */
-    //swerve.setTank(lSpeed, rSpeed);
 
+    switch(counter) {
+      // drive a little til robot pitch(navx roll) is 12 degrees 
+      case 0: 
+      if (swerve.getRoll() >= AutoConsts.initialPitch) {
+        swerve.stopModules();
+        swerve.resetEnc();
+        counter++; 
+      } else {
+        swerve.driveForward(AutoConsts.driveTranslationSlowSpeed);
+      }
+      break; 
+
+      /* 
+      // drive 3 enc counts (about 2 inches???)
+      case 1: 
+      if (swerve.getEnc() > AutoConsts.incrementalEncValue) {
+        swerve.stopModules();
+        counter++; 
+      } else {
+        swerve.driveForward(AutoConsts.driveTranslationSlowSpeed);
+      }
+      break; 
+
+      // wait 2 seconds, if balanced, stop
+      case 2: 
+      timer.start();
+      if (timer.get() > 2) {
+        //check roll 
+        if (swerve.getRoll() < 6) {
+          swerve.stopModules();
+          counter++; 
+        } else {
+          timer.stop();
+          timer.reset();
+          counter = 1; 
+        }
+
+      }
+      break; */
+
+      default:
+    }
+
+/* 
     switch (counter) {
       case 0: //drive until -12 deg (initial startup)
         if (swerve.getRoll() <= AutoConsts.initialPitch) {
@@ -92,19 +116,20 @@ public class IncrementBalanceCommand extends CommandBase {
 
       break;
       
+      
     }
 
     /* * * Smart Dashboard * * */
     SmartDashboard.putString("Current Command", getName());
-    SmartDashboard.putNumber("Balance Counter", counter);
+    SmartDashboard.putNumber("Counter", counter);
     SmartDashboard.putNumber("Auto Timer", autoTimer.get());
     SmartDashboard.putNumber("Timer", timer.get());
-    SmartDashboard.putNumber("Encoder", swerve.getEnc()); 
+    SmartDashboard.putNumber("drive enc", swerve.getEnc()); 
   }
 
   @Override
   public void end(boolean interrupted) {
-    SmartDashboard.putString("Current Command", "");
+    SmartDashboard.putString("Current Command", "LOCKED!!!");
     swerve.stopModules();
     swerve.lock();
   }

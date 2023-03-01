@@ -2,6 +2,7 @@
 package frc.robot.commands.MovementCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.AutoConsts;
 import frc.robot.subsystems.SwerveSubsystem;
 
 public class StrafeRightCommand extends CommandBase {
@@ -22,7 +23,7 @@ public class StrafeRightCommand extends CommandBase {
 
   @Override
   public void execute() {
-    swerve.strafeRight();
+    swerve.strafeRight(AutoConsts.driveTranslationSpeed);
   }
 
   @Override

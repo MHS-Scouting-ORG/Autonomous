@@ -49,7 +49,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return new RotateRightCommand(swerve, 180);//High(swerve, claw, pivot, elev);
-    //new Hybrid(swerve, claw, pivot, elev);
+    return new IncrementBalanceCommand(swerve);
   }
 }

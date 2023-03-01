@@ -1,6 +1,7 @@
 package frc.robot.commands.MovementCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.AutoConsts;
 import frc.robot.Constants.SwerveConsts;
 import frc.robot.subsystems.SwerveSubsystem;
 
@@ -22,7 +23,7 @@ public class RotateLeftCommand extends CommandBase {
 
   @Override
   public void execute() {
-    swerve.rotateLeft();
+    swerve.rotateLeft(AutoConsts.driveRotationSpeed);
   }
 
   @Override
