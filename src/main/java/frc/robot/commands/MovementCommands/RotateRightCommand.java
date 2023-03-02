@@ -11,13 +11,15 @@ public class RotateRightCommand extends CommandBase {
 
   public RotateRightCommand(SwerveSubsystem newSwerve, double newDesiredAngle) {
     swerve = newSwerve;
-    desiredAngle = swerve.getAngle() + newDesiredAngle; 
+    desiredAngle = -newDesiredAngle; 
 
     addRequirements(swerve);
   }
 
   @Override
-  public void initialize() {}
+  public void initialize() {
+    swerve.resetNavx();
+  }
 
   @Override
   public void execute() {
