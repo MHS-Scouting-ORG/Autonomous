@@ -26,20 +26,17 @@ public class StrafeRightCommand extends CommandBase {
   public void execute() {
     SmartDashboard.putString("Current Command", getName());
 
-    if (swerve.getDriveVelocity() > 0) {
-      desiredEnc *= -1; 
-    }
-
     swerve.strafeRight(AutoConsts.driveTranslationSpeed);
   }
 
   @Override
   public void end(boolean interrupted) {
+    SmartDashboard.putString("Current Command", "stop");
     swerve.stopModules();
   }
 
   @Override
   public boolean isFinished() {
-    return swerve.getDriveEnc() < -desiredEnc;
+    return Math.abs(swerve.getDriveEnc()) > desiredEnc;
   }
 }

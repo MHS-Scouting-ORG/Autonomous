@@ -155,12 +155,12 @@ public class SwerveSubsystem extends SubsystemBase {
     }
 
     public void strafeLeft(double ySpeed){
-        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, -ySpeed, 0));
+        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, ySpeed, 0));
         setModuleStates(moduleStates);
     }
 
     public void strafeRight(double ySpeed){
-        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, ySpeed, 0));
+        SwerveModuleState[] moduleStates = SwerveConsts.driveKinematics.toSwerveModuleStates(new ChassisSpeeds(0, -ySpeed, 0));
         setModuleStates(moduleStates);
     }
 
@@ -192,7 +192,7 @@ public class SwerveSubsystem extends SubsystemBase {
     public void display() {
         SmartDashboard.putNumber("[S] yaw 0-360", getYawAngle());
         SmartDashboard.putNumber("[S] Pitch", getRoll());
-        SmartDashboard.putNumber("[S] Drive Enc", getDriveEnc());
+        SmartDashboard.putNumber("[S] Drive Enc", Math.abs(getDriveEnc()));
         SmartDashboard.putNumber("[S] Turn Pos", getTurningPos());
     
     }

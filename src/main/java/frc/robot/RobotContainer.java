@@ -3,6 +3,7 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.DriverControl;
 import frc.robot.commands.IncrementBalanceCommand;
+import frc.robot.commands.PitchBalance;
 import frc.robot.commands.ArmCommands.Tucked;
 import frc.robot.commands.AutonomousCommands.High;
 import frc.robot.commands.AutonomousCommands.Hybrid;
@@ -10,6 +11,7 @@ import frc.robot.commands.ClawCommands.Claw;
 import frc.robot.commands.MovementCommands.DriveBackwardCommand;
 import frc.robot.commands.MovementCommands.DriveForwardCommand;
 import frc.robot.commands.MovementCommands.RotateRightCommand;
+import frc.robot.commands.MovementCommands.StrafeRightCommand;
 import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.PivotSubsystem;
@@ -50,7 +52,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return new DriveForwardCommand(swerve, 27);
-    //IncrementBalanceCommand(swerve);
+    return new PitchBalance(swerve);
   }
 }
