@@ -33,6 +33,6 @@ public class StrafeRightCommand extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return swerve.getEnc() < -desiredEnc;
+    return swerve.getDriveEnc() < -desiredEnc;
   }
 }

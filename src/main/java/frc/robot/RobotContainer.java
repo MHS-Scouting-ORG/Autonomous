@@ -46,9 +46,11 @@ public class RobotContainer {
     new JoystickButton(m_Controller, 1).onTrue(new Claw(claw)); 
     new JoystickButton(m_Controller, 2).onTrue(new InstantCommand(() -> swerve.resetNavx())); 
     new JoystickButton(m_Controller, 3).onTrue(Tucked.getCommand(pivot, elev));
+    new JoystickButton(m_Controller, 4).onTrue(new DriveForwardCommand(swerve, 27));
   }
 
   public Command getAutonomousCommand() {
-    return new IncrementBalanceCommand(swerve);
+    return new DriveForwardCommand(swerve, 27);
+    //IncrementBalanceCommand(swerve);
   }
 }

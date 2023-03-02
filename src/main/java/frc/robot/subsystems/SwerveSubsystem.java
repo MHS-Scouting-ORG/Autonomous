@@ -62,8 +62,12 @@ public class SwerveSubsystem extends SubsystemBase {
   //   GET METHODS   //
   /////////////////////
 
-    public double getEnc() {
+    public double getDriveEnc() {
         return frontLeft.getDrivePosition(); 
+    }
+
+    public double getTurningPos() {
+        return frontLeft.getTurningPosition();
     }
 
     //returns yaw in degrees, 0-360
@@ -95,6 +99,11 @@ public class SwerveSubsystem extends SubsystemBase {
     public Rotation2d getRotation2d() {
         return Rotation2d.fromDegrees(getYawAngle());
     } 
+
+    //return the speed of the drive motor 
+    public double getDriveVelocity() {
+        return frontLeft.getDriveSpeed();
+    }
 
   /////////////////////
   //   SET MODULES   //
@@ -179,12 +188,19 @@ public class SwerveSubsystem extends SubsystemBase {
         frontRight.setDrivingMotor(rSpeed);
     }
 
+    /* * * DISPLAY * * */
+    public void display() {
+        SmartDashboard.putNumber("[S] yaw 0-360", getYawAngle());
+        SmartDashboard.putNumber("[S] Pitch", getRoll());
+        SmartDashboard.putNumber("[S] Drive Enc", getDriveEnc());
+        SmartDashboard.putNumber("[S] Turn Pos", getTurningPos());
+    
+    }
+ 
     // PERIODIC - runs repeatedly (like periodic from timed robot)
     @Override
     public void periodic() {
-    SmartDashboard.putNumber("Robot Yaw", getYawAngle());
-    SmartDashboard.putNumber("Robot Pitch", getRoll());
-    SmartDashboard.putNumber("Drive Enc", getEnc());
+        display();
     }
     
 

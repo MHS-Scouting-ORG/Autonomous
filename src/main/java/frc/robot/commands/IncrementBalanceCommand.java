@@ -121,7 +121,7 @@ public class IncrementBalanceCommand extends CommandBase {
     SmartDashboard.putNumber("Counter", counter);
     SmartDashboard.putNumber("Auto Timer", autoTimer.get());
     SmartDashboard.putNumber("Timer", timer.get());
-    SmartDashboard.putNumber("drive enc", swerve.getEnc()); 
+    SmartDashboard.putNumber("drive enc", swerve.getDriveEnc()); 
   }
 
   @Override
