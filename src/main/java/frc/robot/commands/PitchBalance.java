@@ -35,14 +35,15 @@ public class PitchBalance extends CommandBase {
     // Strafes right onto charge station
     swerve.strafeRight(AutoConsts.driveTranslationSpeed);
     
-    // Checks if pitch is greater than 13.5
-    if (swerve.getPitch() > AutoConsts.balanceThreshhold){
+    // Checks if pitch is greater than -13.5
+    if (swerve.getPitch() < -13){
       readyToEnd = true;
     }
   }
 
   @Override
   public void end(boolean interrupted) {
+    SmartDashboard.putString("Current Command", "Lock");
     // Stop then lock drive
     swerve.stopModules();
     swerve.lock();
@@ -50,7 +51,7 @@ public class PitchBalance extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    // Checks a second time if pitch is greater than 13.5, ends if true
-    return readyToEnd && swerve.getPitch() < AutoConsts.balanceThreshhold;
+    // Checks a second time if pitch is greater than -13.5, ends if true
+    return readyToEnd && swerve.getPitch() > -11.8;
   }
 }
