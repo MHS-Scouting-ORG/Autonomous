@@ -11,7 +11,7 @@ public class DriveBackwardCommand extends CommandBase {
 
   public DriveBackwardCommand(SwerveSubsystem newSwerve, double newDesiredEnc) {
     swerve = newSwerve; 
-    desiredEnc = -newDesiredEnc; 
+    desiredEnc = newDesiredEnc; 
 
     addRequirements(swerve);
   }
@@ -23,10 +23,6 @@ public class DriveBackwardCommand extends CommandBase {
 
   @Override
   public void execute() {
-    if (swerve.getDriveVelocity() > 0) {
-      desiredEnc *= -1; 
-    }
-    
     SmartDashboard.putString("Current Command", getName());
     swerve.driveBackward(AutoConsts.driveTranslationSpeed);
   }
@@ -38,6 +34,6 @@ public class DriveBackwardCommand extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return swerve.getDriveEnc() < desiredEnc;
+    return Math.abs(swerve.getDriveEnc()) > desiredEnc;
   }
 }

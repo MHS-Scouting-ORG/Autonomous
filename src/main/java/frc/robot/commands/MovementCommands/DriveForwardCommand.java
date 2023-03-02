@@ -23,10 +23,6 @@ public class DriveForwardCommand extends CommandBase{
 
     @Override
     public void execute(){
-        if (swerve.getDriveVelocity() < 0) {
-            desiredEnc *= -1; 
-        }
-
         SmartDashboard.putString("CurrentCommand", getName());
         swerve.driveForward(AutoConsts.driveTranslationSpeed);
     }
@@ -39,7 +35,7 @@ public class DriveForwardCommand extends CommandBase{
 
     @Override
     public boolean isFinished(){
-        return swerve.getDriveEnc() > desiredEnc;
+        return Math.abs(swerve.getDriveEnc()) > desiredEnc;
     }
 
 }

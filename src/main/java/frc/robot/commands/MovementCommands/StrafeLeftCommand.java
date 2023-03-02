@@ -25,10 +25,6 @@ public class StrafeLeftCommand extends CommandBase {
   public void execute() {
     SmartDashboard.putString("Current Command", getName());
 
-    if (swerve.getDriveVelocity() < 0) {
-      desiredEnc *= -1; 
-  }
-
     swerve.strafeLeft(AutoConsts.driveTranslationSpeed);
   }
 
@@ -39,6 +35,6 @@ public class StrafeLeftCommand extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return swerve.getDriveEnc() > desiredEnc;
+    return Math.abs(swerve.getDriveEnc()) > desiredEnc;
   }
 }
