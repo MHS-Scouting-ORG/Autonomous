@@ -25,7 +25,8 @@ public class DriveBackwardCommand extends CommandBase {
   public void execute() {
     if (swerve.getDriveVelocity() > 0) {
       desiredEnc *= -1; 
-  }
+    }
+    
     SmartDashboard.putString("Current Command", getName());
     swerve.driveBackward(AutoConsts.driveTranslationSpeed);
   }

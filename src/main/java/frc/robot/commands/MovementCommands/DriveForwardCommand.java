@@ -26,8 +26,8 @@ public class DriveForwardCommand extends CommandBase{
         if (swerve.getDriveVelocity() < 0) {
             desiredEnc *= -1; 
         }
-        
-        SmartDashboard.putBoolean("drive fwd", true);
+
+        SmartDashboard.putString("CurrentCommand", getName());
         swerve.driveForward(AutoConsts.driveTranslationSpeed);
     }
 

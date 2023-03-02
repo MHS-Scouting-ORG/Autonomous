@@ -17,6 +17,11 @@ public class PitchBalance extends CommandBase {
     addRequirements(swerve);
   }
 
+  public void display() {
+    SmartDashboard.putString("Current Command", getName());
+    SmartDashboard.putBoolean("[A] ready to end", readyToEnd);
+  }
+
   @Override
   public void initialize() {
     // Reset boolean to false
@@ -25,8 +30,7 @@ public class PitchBalance extends CommandBase {
 
   @Override
   public void execute() {
-    // Prints if readyToEnd
-    SmartDashboard.putBoolean("Ready To End?", readyToEnd);
+    display();
 
     // Strafes right onto charge station
     swerve.strafeRight(AutoConsts.driveTranslationSpeed);
@@ -47,6 +51,6 @@ public class PitchBalance extends CommandBase {
   @Override
   public boolean isFinished() {
     // Checks a second time if pitch is greater than 13.5, ends if true
-    return readyToEnd && swerve.getPitch() > AutoConsts.balanceThreshhold;
+    return readyToEnd && swerve.getPitch() < AutoConsts.balanceThreshhold;
   }
 }
