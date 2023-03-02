@@ -22,14 +22,17 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.DriverControl;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 
 public class RobotContainer {
 
+  //INIT OBJECTS
   private final SwerveSubsystem swerve = new SwerveSubsystem();
   private final ClawSubsystem claw = new ClawSubsystem(); 
   private final ElevatorSubsystem elev = new ElevatorSubsystem(); 
   private final PivotSubsystem pivot = new PivotSubsystem();
+  private final Timer timer = new Timer(); 
 
   private final XboxController m_Controller = new XboxController(0); 
 
@@ -52,6 +55,8 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return new PitchBalance(swerve);
+    timer.reset();
+    timer.start();
+    return new Hybrid(swerve, claw, pivot, elev, timer.get());
   }
 }

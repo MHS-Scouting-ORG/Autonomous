@@ -14,7 +14,7 @@ import frc.robot.subsystems.SwerveSubsystem;
 
 public class Hybrid extends SequentialCommandGroup {
 
-  public Hybrid(SwerveSubsystem swerve, ClawSubsystem claw, PivotSubsystem pivot, ElevatorSubsystem elevator)  {
+  public Hybrid(SwerveSubsystem swerve, ClawSubsystem claw, PivotSubsystem pivot, ElevatorSubsystem elevator, double time)  {
 
     //SCORE CONE IN HYBRID GOAL 
     addCommands(
@@ -38,7 +38,7 @@ public class Hybrid extends SequentialCommandGroup {
       new RotateLeftCommand(swerve, 90),
 
       // Balance on Charge Station 
-      new PitchBalance(swerve)
+      new PitchBalance(swerve, time)
     );
   }
 }
