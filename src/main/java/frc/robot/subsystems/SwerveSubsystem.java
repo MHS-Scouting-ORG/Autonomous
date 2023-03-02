@@ -191,7 +191,8 @@ public class SwerveSubsystem extends SubsystemBase {
     /* * * DISPLAY * * */
     public void display() {
         SmartDashboard.putNumber("[S] yaw 0-360", getYawAngle());
-        SmartDashboard.putNumber("[S] Pitch", getRoll());
+        SmartDashboard.putNumber("[S] Pitch", getPitch());
+        SmartDashboard.putNumber("[S] Roll", getRoll());
         SmartDashboard.putNumber("[S] Drive Enc", Math.abs(getDriveEnc()));
         SmartDashboard.putNumber("[S] Turn Pos", getTurningPos());
     

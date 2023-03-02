@@ -64,7 +64,7 @@ public final class Constants {
   /////////////////////
 
   public static class AutoConsts{
-    public static final double driveTranslationSpeed = 0.1;
+    public static final double driveTranslationSpeed = 0.16;
     public static final double driveTranslationSlowSpeed = 0.07; 
     public static final double driveRotationSpeed = 0.3;
 
