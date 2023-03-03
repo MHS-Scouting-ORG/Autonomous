@@ -30,7 +30,6 @@ public class Hybrid extends SequentialCommandGroup {
      // Arm in resting position (pivot in, elevator down) 
       new TuckedFromBottom(pivot, elevator),
 
-
       // Move backward
       new DriveBackwardCommand(swerve, 10), 
 
