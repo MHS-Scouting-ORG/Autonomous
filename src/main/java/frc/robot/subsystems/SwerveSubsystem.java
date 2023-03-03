@@ -41,6 +41,8 @@ public class SwerveSubsystem extends SubsystemBase {
         navx = new AHRS(SPI.Port.kMXP);
 
         navx.zeroYaw();
+
+        straightenWheels();
     }
 
   /////////////////////
@@ -138,6 +140,13 @@ public class SwerveSubsystem extends SubsystemBase {
         backLeft.setAngle(bl);
         backRight.setAngle(br);
         frontRight.setAngle(fr);
+    }
+
+    public void straightenWheels() {
+        SwerveModuleState fl = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(0)));
+        SwerveModuleState bl = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(0)));
+        SwerveModuleState br = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(0)));
+        SwerveModuleState fr = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(0)));
     }
 
   ///////////////////////////
